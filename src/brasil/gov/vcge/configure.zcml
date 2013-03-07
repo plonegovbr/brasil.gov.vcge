@@ -12,6 +12,9 @@
     <include package=".controlpanel" />
     <include package=".upgrades" />
 
+    <!-- Apenas se ATContentTypes (Archetypes) estiver instalado -->
+  	<include zcml:condition="installed Products.ATContentTypes" package=".at" />
+
     <i18n:registerTranslations directory="locales" />
 
 	<genericsetup:registerProfile
@@ -36,8 +39,5 @@
 	     component=".vocabulary.VCGEVocabularyFactory"
 	     name="brasil.gov.vcge"
 	/>
-
-	<adapter factory=".extender.VCGEExtender"
-    		 provides="archetypes.schemaextender.interfaces.ISchemaExtender" />
 
 </configure>
