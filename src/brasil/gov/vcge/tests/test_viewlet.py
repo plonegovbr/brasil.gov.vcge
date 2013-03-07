@@ -41,6 +41,8 @@ class TestViewlet(unittest.TestCase):
         viewlet.update()
         skos = viewlet.skos()
         self.assertEquals(len(skos), 1)
+        term = skos[0]
+        self.assertEquals(term.get('title'), u'Achados e perdidos')
 
     def test_skos_not_existent(self):
         ''' Testa o que acontece quando nao temos o Extender
