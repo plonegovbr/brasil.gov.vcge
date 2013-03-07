@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 """ Modulo que implementa o(s) viewlet(s) do VCGE"""
+from Acquisition import aq_base
+from Acquisition import aq_inner
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from zope.component import queryUtility
@@ -20,7 +22,10 @@ class VCGEViewlet(ViewletBase):
     def skos(self):
         ''' Retorna lista de itens selecionados neste conteudo
         '''
-        uris = self.context.skos
+        context = aq_base(aq_inner(self.context))
+        uris = []
+        if hasattr(context, 'skos'):
+            uris = self.context.skos
         name = 'brasil.gov.vcge'
         util = queryUtility(IVocabularyFactory, name)
         vcge = util(self.context)
