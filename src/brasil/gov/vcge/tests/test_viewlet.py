@@ -35,6 +35,13 @@ class TestViewlet(unittest.TestCase):
         self.setUpUser()
         self.setUpContent()
 
+    def test_rel(self):
+        content = self.content
+        viewlet = VCGEViewlet(content, self.request, None, None)
+        viewlet.update()
+        rel = viewlet.rel()
+        self.assertEquals(rel, u'dc:subject foaf:primaryTopic')
+
     def test_skos(self):
         content = self.content
         viewlet = VCGEViewlet(content, self.request, None, None)
