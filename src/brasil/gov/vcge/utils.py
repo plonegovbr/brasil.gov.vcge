@@ -9,6 +9,8 @@ import rdflib
 
 @forever.memoize
 def load_skos():
+    ''' Retorna os dados em formato de dicionarios
+    '''
     path = os.path.dirname(__file__)
     data = open(os.path.join(path, 'data', config.DEFAULT_FILE)).read()
     termos = parse_skos(data, format=config.DEFAULT_FORMAT)
@@ -16,6 +18,8 @@ def load_skos():
 
 
 def parse_skos(data, format='xml'):
+    ''' Realiza o parse de uma string skos
+    '''
     skos = Namespace(config.NAMESPACE)
     g = rdflib.Graph()
     result = g.parse(data=data, format=format)
