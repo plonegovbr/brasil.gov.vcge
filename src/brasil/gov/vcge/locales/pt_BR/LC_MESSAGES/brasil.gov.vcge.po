@@ -1,0 +1,24 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: brasil.gov.vcge\n"
+"POT-Creation-Date: 2013-03-07 00:46+0000\n"
+"PO-Revision-Date: 2012-09-18 23:00+0000\n"
+"Last-Translator: PloneGov.Br <gov@plone.org.br>\n"
+"Language-Team: PloneGov.Br <gov@plone.org.br>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: pt_BR\n"
+"Language-Name: Português do Brasil\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: brasil.gov.vcge\n"
+
+#: ../extender.py:37
+msgid "VCGE"
+msgstr "VCGE"
+
+#: ../extender.py:38
+msgid "vcge_desc"
+msgstr "Vocabulário Controlado do Governo Eletrônico: Ao digitar um termo serão apresentados os itens do vocabulário que contenham este termo."
+

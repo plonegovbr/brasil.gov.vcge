@@ -1,0 +1,8 @@
+Alterações
+------------
+
+0.5 (unreleased)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  * Versão inicial do pacote
+  	[ericof]

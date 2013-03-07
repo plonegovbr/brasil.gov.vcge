@@ -1,0 +1,17 @@
+<div i18n:domain="brasil.gov.vcge"
+     id="category"
+     class="documentByLine"
+     tal:define="categories view/skos|nothing;"
+     tal:condition="categories">
+  <tal:filedunder i18n:translate="">Assunto(s):</tal:filedunder>
+  <span tal:repeat="category categories">
+    <a href=""
+       class="link-category"
+       rel="tag"
+       tal:content="category/title"
+       tal:attributes="href category/id;
+                       rel view/rel;">
+      Category
+      </a><span class="separator" tal:condition="not: repeat/category/end">,</span>
+  </span>
+</div>

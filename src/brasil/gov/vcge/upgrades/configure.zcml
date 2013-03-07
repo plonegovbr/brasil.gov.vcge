@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="brasil.barra.gov">
+    
+    <!-- Upgrades-->
+    <genericsetup:upgradeStep
+        title="Brasil.gov.br: Vocabulário Controlado do Governo Eletrônico"
+        description="Instalacao inicial da intergração do VCGE ao Plone"
+        source="0.0"
+        destination="1000"
+        sortkey="1"
+        handler="brasil.gov.vcge.upgrades.to1000.from0"
+        profile="brasil.gov.vcge:default" />
+
+</configure>
