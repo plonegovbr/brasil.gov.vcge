@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<metadata>
+  <version>1000</version>
+  <dependencies>
+    <dependency>profile-brasil.gov.vcge:default</dependency>
+    <dependency>profile-raptus.autocompletewidget:default</dependency>
+  </dependencies>
+</metadata>
