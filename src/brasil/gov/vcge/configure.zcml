@@ -15,6 +15,10 @@
     <!-- Apenas se ATContentTypes (Archetypes) estiver instalado -->
   	<include zcml:condition="installed Products.ATContentTypes" package=".at" />
 
+    <!-- Apenas se Dexterity estiver instalado -->
+  	<include zcml:condition="installed plone.app.dexterity" package=".dx" />
+
+
     <i18n:registerTranslations directory="locales" />
 
 	<genericsetup:registerProfile

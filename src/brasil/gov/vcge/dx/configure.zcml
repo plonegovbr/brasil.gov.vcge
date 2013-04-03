@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="brasil.gov.vcge">
+
+    <!-- Incluimos as dependencias -->
+    <include package="collective.z3cform.widgets" />
+    <include package="plone.app.dexterity" />
+    <include package="plone.behavior" file="meta.zcml" />
+    <include package="plone.dexterity" />
+
+
+    <!-- Registramos o Behavior -->
+    <plone:behavior
+        title="Suporte ao VCGE"
+        description="Provê aos tipos Dexterity o suporte ao VCGE"
+        provides=".behaviors.IVCGE"
+        factory=".behaviors.VCGE"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        marker=".interfaces.IVCGEDx"
+        />
+
+
+    <!-- E o profile que instala as dependencias -->
+    <genericsetup:registerProfile
+         name="default"
+         title="Brasil.gov.br: Vocabulário Controlado do Governo Eletrônico (Dexterity)"
+         directory="profiles/default"
+         description="Integração do VCGE ao Plone (Dexterity)"
+         provides="Products.GenericSetup.interfaces.EXTENSION"
+         i18n:attributes="title; description"
+         />
+
+</configure>
