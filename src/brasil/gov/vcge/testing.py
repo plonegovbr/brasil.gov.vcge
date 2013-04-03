@@ -15,7 +15,9 @@ class Fixture(PloneSandboxLayer):
         self.loadZCML(package=brasil.gov.vcge)
 
     def setUpPloneSite(self, portal):
-        self.applyProfile(portal, 'brasil.gov.vcge:default')
+        # Aplicamos os profiles para Archetypes e Dexterity
+        self.applyProfile(portal, 'brasil.gov.vcge.at:default')
+        self.applyProfile(portal, 'brasil.gov.vcge.dx:default')
 
 
 FIXTURE = Fixture()
