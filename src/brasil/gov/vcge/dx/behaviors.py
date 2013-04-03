@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from brasil.gov.vcge import MessageFactory as _
-from collective.z3cform.widgets.token_input_widget import TokenInputFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
