@@ -4,6 +4,5 @@
   <dependencies>
     <dependency>profile-brasil.gov.vcge:default</dependency>
     <dependency>profile-plone.app.dexterity:default</dependency>
-    <dependency>profile-collective.z3cform.widgets:default</dependency>    
   </dependencies>
 </metadata>

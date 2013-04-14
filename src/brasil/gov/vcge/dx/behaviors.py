@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from brasil.gov.vcge import MessageFactory as _
+from brasil.gov.vcge.dx.widget import SkosFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
@@ -7,8 +8,6 @@ from z3c.form.interfaces import IAddForm
 from z3c.form.interfaces import IEditForm
 from zope import schema
 from zope.interface import alsoProvides
-
-widget = 'collective.z3cform.widgets.token_input_widget.TokenInputFieldWidget'
 
 
 class IVCGE(model.Schema):
@@ -21,7 +20,7 @@ class IVCGE(model.Schema):
         fields=['skos'],
     )
 
-#    form.widget(skos=TokenInputFieldWidget)
+    form.widget(skos=SkosFieldWidget)
     skos = schema.Tuple(
         title=_(u'VCGE'),
         description=_(u'vcge_desc'),
