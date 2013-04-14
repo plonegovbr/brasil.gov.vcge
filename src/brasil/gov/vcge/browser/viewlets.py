@@ -25,7 +25,7 @@ class VCGEViewlet(ViewletBase):
         context = aq_base(aq_inner(self.context))
         uris = []
         if hasattr(context, 'skos'):
-            uris = self.context.skos
+            uris = self.context.skos or []
         name = 'brasil.gov.vcge'
         util = queryUtility(IVocabularyFactory, name)
         vcge = util(self.context)
