@@ -41,13 +41,13 @@ class TestInstall(BaseTestCase):
         self.assertTrue(self.qi.isProductInstalled(PROJECTNAME),
                         '%s not installed' % PROJECTNAME)
 
-    def test_at_dependencies_installed(self):
+    def test_dependencies_installed(self):
         for product in ['raptus.autocompletewidget', ]:
             self.assertTrue(self.qi.isProductInstalled(product),
                             '%s not installed' % product)
 
     def test_dx_dependencies_installed(self):
-        for product in ['plone.app.dexterity', 'collective.z3cform.widgets']:
+        for product in ['plone.app.dexterity', ]:
             self.assertTrue(self.qi.isProductInstalled(product),
                             '%s not installed' % product)
 
