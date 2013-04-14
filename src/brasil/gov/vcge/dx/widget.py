@@ -64,7 +64,6 @@ class SkosWidget(widget.SequenceWidget):
         context = self.context
         form_url = context.absolute_url()
         js_callback = self.js_callback_template % dict(id=self.id, name=self.name)
-        js_populate = self.js_populate_template % dict(id=self.id, url=form_url, name=self.name)
         return self.js_template % dict(
             id=self.id,
             name=self.name,
@@ -75,8 +74,7 @@ class SkosWidget(widget.SequenceWidget):
             matchContains=str(self.matchContains).lower(),
             formatItem=self.formatItem,
             formatResult=self.formatResult,
-            js_callback=js_callback,
-            js_populate=js_populate,)
+            js_callback=js_callback,)
 
     def vocab(self):
         name = 'brasil.gov.vcge'
