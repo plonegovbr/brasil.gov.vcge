@@ -4,6 +4,7 @@ from Acquisition import aq_base
 from Acquisition import aq_inner
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from urllib import urlencode
 from zope.component import queryUtility
 from zope.schema.interfaces import IVocabularyFactory
 
@@ -18,6 +19,8 @@ class VCGEViewlet(ViewletBase):
         ''' Prepara/Atualiza os valores utilizados pelo Viewlet
         '''
         super(VCGEViewlet, self).update()
+        ps = self.context.restrictedTraverse('@@plone_portal_state')
+        self.nav_root_url = ps.navigation_root().absolute_url()
 
     def skos(self):
         ''' Retorna lista de itens selecionados neste conteudo
@@ -32,8 +35,11 @@ class VCGEViewlet(ViewletBase):
         skos = []
         for uri in uris:
             title = vcge.by_token[uri].title
+            params = urlencode({'skos:list': uri})
             skos.append({'id': uri,
-                         'title': title})
+                         'title': title,
+                         'url': '%s/@@search?%s' % (self.nav_root_url,
+                                                    params)})
         return skos
 
     def rel(self):

@@ -9,7 +9,7 @@
        class="link-category"
        rel="tag"
        tal:content="category/title"
-       tal:attributes="href category/id;
+       tal:attributes="href category/url;
                        rel view/rel;">
       Category
       </a><span class="separator" tal:condition="not: repeat/category/end">,</span>
