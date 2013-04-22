@@ -17,8 +17,7 @@ Os conteúdos classificados com este produto, e publicados na web, se juntam a o
 
 Para visualizar a estrutura `poli-hierárquica <http://eurovoc.europa.eu/drupal/?q=pt/node/924>`_ de assuntos do VCGE acesse o `repositório do e-VoG <http://vocab.e.gov.br/2011/03/vcge>`_.
 
-Para saber mais acesse `Vocabulário Controlado do Governo Eletrônico (VCGE)
- <http://www.governoeletronico.gov.br/acoes-e-projetos/e-ping-padroes-de-interoperabilidade/vcge>`_.
+Para saber mais acesse `Vocabulário Controlado do Governo Eletrônico (VCGE) <http://www.governoeletronico.gov.br/acoes-e-projetos/e-ping-padroes-de-interoperabilidade/vcge>`_.
 
 Este produto utiliza um arquivo `SKOS <http://en.wikipedia.org/wiki/Simple_Knowledge_Organization_System>`_, padrão W3C para representar vocabulários controlados, dentre outras estruturas de classificação.
 
