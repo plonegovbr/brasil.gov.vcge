@@ -17,4 +17,12 @@
       permission="zope.Public"
       />
 
+  <!-- Adiciona o link indicando nossa relacao com vcge -->
+  <browser:viewlet
+      name="brasil.gov.vcge.head"
+      manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+      class=".viewlets.VCGEHeadViewlet"
+      permission="zope.Public"
+      />
+
 </configure>

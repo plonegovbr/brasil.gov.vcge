@@ -46,3 +46,7 @@ class VCGEViewlet(ViewletBase):
         '''Formata rel a ser utilizado no href de cada termo
         '''
         return u'dc:subject foaf:primaryTopic'
+
+
+class VCGEHeadViewlet(ViewletBase):
+    index = ViewPageTemplateFile('templates/vcge_head.pt')
