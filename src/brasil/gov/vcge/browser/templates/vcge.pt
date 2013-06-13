@@ -7,10 +7,10 @@
   <span tal:repeat="category categories">
     <a href=""
        class="link-category"
-       rel="tag"
        tal:content="category/title"
        tal:attributes="href category/url;
-                       rel view/rel;">
+                       property view/rel;
+                       resource category/id">
       Category
       </a><span class="separator" tal:condition="not: repeat/category/end">,</span>
   </span>
