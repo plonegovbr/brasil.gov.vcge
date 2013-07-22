@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from brasil.gov.vcge import config
 from plone.memoize import forever
-from rdflib.namespace import Namespace
+from rdflib.namespace import SKOS
 
 import os
 import rdflib
@@ -20,11 +20,10 @@ def load_skos(data_file=config.DEFAULT_FILE):
 def parse_skos(data, format='xml'):
     ''' Realiza o parse de uma string skos
     '''
-    skos = Namespace(config.NAMESPACE)
     g = rdflib.Graph()
     result = g.parse(data=data, format=format)
 
-    objs = [s for s in result.triples((None, skos['prefLabel'], None))]
+    objs = [s for s in result.triples((None, SKOS.prefLabel, None))]
 
     termos = {}
     for obj in objs:
