@@ -1,5 +1,5 @@
 <div i18n:domain="brasil.gov.vcge"
-     id="category"
+     id="category-vcge"
      class="documentByLine"
      tal:define="categories view/skos|nothing;"
      tal:condition="categories">
