@@ -1,6 +1,13 @@
 Alterações
 ------------
 
+1.0a2 (unreleased)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  
+  * Corrige problema com widget quando não existem valores
+    para o atributo skos
+    [ericof]
+
 1.0a1 (2013-07-22)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

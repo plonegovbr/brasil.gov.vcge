@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from z3c.form import interfaces
@@ -90,7 +91,11 @@ class SkosWidget(widget.SequenceWidget):
 
     @property
     def existing(self):
-        value = getattr(self.context, 'skos', [])
+        value = None
+        if base_hasattr(self.context, 'skos'):
+            value = getattr(self.context, 'skos')
+        if not value:
+            value = []
         terms = self.vocab()
         data = []
         for token in value:
