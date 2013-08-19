@@ -163,6 +163,7 @@ class AutocompleteSearch(BrowserView):
         results = [(i.token, i.title) for i in vocab
                    if query in i.title.lower()]
 
+        results = sorted(results, key=lambda pair:len(pair[1]))
         return '\n'.join(["%s|%s" % (value, title)
                           for value, title in results])
 
