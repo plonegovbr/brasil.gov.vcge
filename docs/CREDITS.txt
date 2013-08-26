@@ -6,4 +6,3 @@ Contribuidores
 
 * Comunidade PloneGov.Br -- Implantação em Plone
 
-
