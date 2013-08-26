@@ -2,7 +2,7 @@ Alterações
 ------------
 
 1.0a2 (unreleased)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
   * Alterado id categorias do vcge para que ele não entre em conflito com o
     id do collective.nitf, dando erro de validação w3c.
@@ -15,8 +15,9 @@ Alterações
     para o atributo skos
     [ericof]
 
+
 1.0a1 (2013-07-22)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
   * Versão inicial do pacote
   	[ericof]
