@@ -1,7 +1,7 @@
 Alterações
 ------------
 
-1.0a2 (unreleased)
+1.0rc1 (2013-08-26)
 ^^^^^^^^^^^^^^^^^^
 
 * Alterado id categorias do vcge para que ele não entre em conflito com o
