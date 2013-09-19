@@ -11,7 +11,8 @@
 
    	<!-- Registra adaptador para Archetypes -->
 	<adapter factory=".extender.VCGEExtender"
-    		 provides="archetypes.schemaextender.interfaces.ISchemaExtender" />
+    		 provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+                 name="extender-adapter" />
 
 	<genericsetup:registerProfile
 	     name="default"
