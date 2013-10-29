@@ -1,7 +1,7 @@
 Alterações
 ------------
 
-1.0rc2 (unreleased)
+1.0 (2013-10-29)
 ^^^^^^^^^^^^^^^^^^^
 
 - Adicionado nome ao extender do Archetypes
