@@ -4,18 +4,18 @@ Alterações
 1.1 (unreleased)
 ^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+* Nothing changed yet.
 
 
 1.0 (2013-10-29)
 ^^^^^^^^^^^^^^^^^^^
 
-- Adicionado nome ao extender do Archetypes
+* Adicionado nome ao extender do Archetypes
   [lepri]
 
 
 1.0rc1 (2013-08-26)
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 * Alterado id categorias do vcge para que ele não entre em conflito com o
   id do collective.nitf, dando erro de validação w3c.
