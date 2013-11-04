@@ -40,9 +40,12 @@ setup(name='brasil.gov.vcge',
       namespace_packages=['brasil', 'brasil.gov'],
       include_package_data=True,
       zip_safe=False,
-      install_requires=['setuptools',
-                        'raptus.autocompletewidget',
-                        'rdflib'],
+      install_requires=[
+          'Products.CMFPlone >=4.1',
+          'raptus.autocompletewidget',
+          'rdflib',
+          'setuptools',
+      ],
       extras_require={
           'archetypes': [
               'archetypes.schemaextender',

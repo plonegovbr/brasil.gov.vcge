@@ -39,14 +39,6 @@ Este produto utiliza um arquivo `SKOS
 W3C para representar vocabulários controlados, dentre outras estruturas de
 classificação.
 
-
-Requisitos
-------------
-
-Para uso deste pacote, seu site deve ter sido construído com:
-
-    * Plone 4.0 ou superior (http://plone.org/products/plone)
-
 Estado deste pacote
 ---------------------
 
