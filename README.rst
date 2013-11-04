@@ -50,6 +50,9 @@ O estado atual dos testes pode ser visto na imagem a seguir:
 .. image:: https://secure.travis-ci.org/plonegovbr/brasil.gov.vcge.png?branch=master
     :target: http://travis-ci.org/plonegovbr/brasil.gov.vcge
 
+.. image:: https://coveralls.io/repos/plonegovbr/brasil.gov.vcge/badge.png?branch=master
+    :target: https://coveralls.io/r/plonegovbr/brasil.gov.vcge
+
 Instalação
 ------------
 
