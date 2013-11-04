@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from brasil.gov.vcge.config import PROJECTNAME
+from brasil.gov.vcge.testing import HAS_DEXTERITY
 from brasil.gov.vcge.testing import INTEGRATION_TESTING
 from plone.app.testing import login
 from plone.app.testing import setRoles
@@ -46,6 +47,7 @@ class TestInstall(BaseTestCase):
             self.assertTrue(self.qi.isProductInstalled(product),
                             '%s not installed' % product)
 
+    @unittest.skipIf(not HAS_DEXTERITY, '"dexterity" extra not included')
     def test_dx_dependencies_installed(self):
         for product in ['plone.app.dexterity', ]:
             self.assertTrue(self.qi.isProductInstalled(product),

@@ -3,7 +3,7 @@ from brasil.gov.vcge.dx.behaviors import IVCGE
 from brasil.gov.vcge.dx.behaviors import VCGE
 from brasil.gov.vcge.dx.interfaces import IVCGEDx
 from brasil.gov.vcge.browser.viewlets import VCGEViewlet
-from plone.dexterity.fti import DexterityFTI
+from brasil.gov.vcge.testing import HAS_DEXTERITY
 from brasil.gov.vcge.testing import INTEGRATION_TESTING
 from plone.app.testing import login
 from plone.app.testing import setRoles
@@ -15,6 +15,8 @@ import unittest2 as unittest
 
 
 def add_folder_type(portal):
+    from plone.dexterity.fti import DexterityFTI
+
     fti = DexterityFTI('folder')
     portal.portal_types._setObject('folder', fti)
     fti.klass = 'plone.dexterity.content.Container'
@@ -65,6 +67,9 @@ class TestBehavior(unittest.TestCase):
         self.content = portal[oId]
 
     def setUp(self):
+        if not HAS_DEXTERITY:
+            self.skipTest('"dexterity" extra not included')
+            return
         portal = self.layer['portal']
         self.request = self.layer['app'].REQUEST
         setSite(portal)
@@ -102,6 +107,9 @@ class TestViewlet(unittest.TestCase):
         self.content = o
 
     def setUp(self):
+        if not HAS_DEXTERITY:
+            self.skipTest('"dexterity" extra not included')
+            return
         portal = self.layer['portal']
         self.request = self.layer['app'].REQUEST
         setSite(portal)
