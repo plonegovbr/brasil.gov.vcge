@@ -48,6 +48,9 @@ setup(name='brasil.gov.vcge',
           'raptus.autocompletewidget',
           'rdflib',
           'setuptools',
+          'zope.component',
+          'z3c.form',
+          'zope.interface',
       ],
       extras_require={
           'archetypes': [
@@ -61,6 +64,7 @@ setup(name='brasil.gov.vcge',
               'plone.autoform',
               'plone.behavior',
               'plone.indexer',
+              'Products.CMFPlone',
           ],
           'develop': [
               'Sphinx',
@@ -70,7 +74,8 @@ setup(name='brasil.gov.vcge',
           ],
           'test': [
               'interlude',
-              'plone.app.testing'
+              'plone.app.testing',
+              'unittest2',
           ]},
       entry_points="""
       [z3c.autoinclude.plugin]
