@@ -11,10 +11,13 @@ matrix:
       env: PLONE_VERSION=4.1
   allow_failures:
     - python: 2.6
+      env: PLONE_VERSION=4.0
+    - python: 2.6
       env: PLONE_VERSION=4.1
 install:
   - sed -ie "s#travis-4.x.cfg#travis-$PLONE_VERSION.x.cfg#" travis.cfg
   - test "$PLONE_VERSION" < "4.2" && sed -ie "s#[test, archetypes, dexterity]#[test, archetypes]#" travis.cfg || true
+  - cat travis.cfg
   - mkdir -p buildout-cache/downloads
   - python bootstrap.py -c travis.cfg
   - bin/buildout -c travis.cfg -N -q -t 3
