@@ -69,18 +69,16 @@ class TestUpgrade(BaseTestCase):
 
     profile = 'brasil.gov.vcge:default'
 
-    def test_to1000_from0(self):
+    def test_to1000_available(self):
 
         upgradeSteps = listUpgradeSteps(self.st,
                                         self.profile,
-                                        '0.0')
+                                        '0')
         step = [step for step in upgradeSteps
-                if (step['dest'] == ('1000',))
-                and (step['source'] == ('0', '0'))]
-        step[0].get('step').doStep(self.st)
-        # Testamos a versao do profile
-        self.assertEquals(self.st.getLastVersionForProfile(self.profile),
-                          (u'1000',))
+                if (step[0]['dest'] == ('1000',))
+                and (step[0]['source'] == ('0',))]
+        self.assertEqual(len(step), 1)
+
 
 
 class TestUninstall(BaseTestCase):

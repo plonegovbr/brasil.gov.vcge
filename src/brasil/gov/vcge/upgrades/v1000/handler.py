@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding:utf-8 -*-
 from brasil.gov.vcge.config import PROJECTNAME
 
 import logging
@@ -7,7 +7,6 @@ import logging
 logger = logging.getLogger(PROJECTNAME)
 
 
-def from0(context):
-    ''' Passo de atualizacao para versao 1000
-    '''
+def stub(context):
+    """Passo de atualizacao vazio."""
     logger.info('Instalacao inicial')
