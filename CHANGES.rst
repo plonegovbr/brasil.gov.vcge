@@ -1,10 +1,17 @@
 Alterações
 ------------
 
-1.1 (unreleased)
-^^^^^^^^^^^^^^^^
+1.0.1 (unreleased)
+^^^^^^^^^^^^^^^^^^^
 
-* Nothing changed yet.
+* Suporte a filtros em Colecoes do Plone (plone.app.collection)
+  [ericof]
+
+* Refatoracao dos upgrade steps
+  [ericof]
+
+* Melhor suporte a testes e a coverage
+  [hvelarde]
 
 
 1.0 (2013-10-29)
