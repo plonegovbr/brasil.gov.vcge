@@ -4,6 +4,9 @@ Alterações
 1.0.1 (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
+* Removido suporte as versoes 4.0 e 4.1 do Plone
+  [ericof]
+
 * Suporte a filtros em Colecoes do Plone (plone.app.collection)
   [ericof]
 
