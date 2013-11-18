@@ -1,7 +1,7 @@
 Alterações
 ------------
 
-1.0.1 (unreleased)
+1.0.1 (2013-11-18)
 ^^^^^^^^^^^^^^^^^^^
 
 * Removido suporte as versoes 4.0 e 4.1 do Plone
