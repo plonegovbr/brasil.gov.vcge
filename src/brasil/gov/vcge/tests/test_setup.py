@@ -79,6 +79,15 @@ class TestUpgrade(BaseTestCase):
                 and (step[0]['source'] == ('0',))]
         self.assertEqual(len(step), 1)
 
+    def test_to2000_available(self):
+
+        upgradeSteps = listUpgradeSteps(self.st,
+                                        self.profile,
+                                        '1000')
+        step = [step for step in upgradeSteps
+                if (step[0]['dest'] == ('2000',))
+                and (step[0]['source'] == ('1000',))]
+        self.assertEqual(len(step), 1)
 
 
 class TestUninstall(BaseTestCase):
