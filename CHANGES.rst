@@ -4,7 +4,8 @@ Alterações
 1.0.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+* Oculta upgrade steps
+  [dbarbato]
 
 
 1.0.1 (2013-11-18)
