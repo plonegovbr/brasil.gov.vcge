@@ -4,6 +4,8 @@ Alterações
 1.0.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+* Inclui collective.z3cform.widgets como requerimento.
+  [dbarbato]
 * Oculta upgrade steps
   [dbarbato]
 
