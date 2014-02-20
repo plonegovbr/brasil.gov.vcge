@@ -24,9 +24,6 @@ class HiddenProfiles(object):
 
     def getNonInstallableProfiles(self):
         return [
-            'brasil.gov.vcge:default',
-            'brasil.gov.vcge.at:default',
-            'brasil.gov.vcge.dx:default',
             'brasil.gov.vcge:uninstall',
             'brasil.gov.vcge.upgrades.v2000:default'
         ]
