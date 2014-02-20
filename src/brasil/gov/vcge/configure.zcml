@@ -17,12 +17,13 @@
     <!-- Apenas se Dexterity estiver instalado -->
   	<include zcml:condition="installed plone.app.dexterity" package=".dx" />
 
-
+    <!-- Registra o diretorio com traducoes -->
     <i18n:registerTranslations directory="locales" />
 
     <!-- Profiles do Generic Setup -->
     <include file="profiles.zcml" />
 
+    <!-- Vocabulario -->
 	<utility
 	     component=".vocabulary.VCGEVocabularyFactory"
 	     name="brasil.gov.vcge"
