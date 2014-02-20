@@ -1,5 +1,5 @@
 ***************************************************************
-Brasil.gov.br: Vocabulário Controlado do Governo Eletrônico
+.gov.br: Vocabulário Controlado do Governo Eletrônico
 ***************************************************************
 
 .. contents:: Conteúdo
@@ -73,4 +73,4 @@ buildout:
 3. Reinicie o Plone
 
 4. Acesse o painel de controle e instale o produto
-**Brasil.gov.br: Vocabulário Controlado do Governo Eletrônico**.
+**.gov.br: Vocabulário Controlado do Governo Eletrônico**.

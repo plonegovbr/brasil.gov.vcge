@@ -4,8 +4,12 @@ Alterações
 1.0.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+* Renomeia pacote para .gov.br
+  [ericof]
+
 * Inclui collective.z3cform.widgets como requerimento.
   [dbarbato]
+
 * Oculta upgrade steps
   [dbarbato]
 

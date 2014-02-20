@@ -1,8 +1,7 @@
 Contribuidores
 -----------------
 
-* Equipe do Governo Eletrônico -- concepção da barra, diretrizes 
-  de uso 
+* Equipe do Governo Eletrônico -- Criação do VCGE, diretrizes de uso.
 
 * Comunidade PloneGov.Br -- Implantação em Plone
 
