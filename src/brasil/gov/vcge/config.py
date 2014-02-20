@@ -11,6 +11,7 @@ NAMESPACE = 'http://www.w3.org/2004/02/skos/core#'
 
 
 class HiddenProducts(object):
+    """ Oculta produtos do QuickInstaller """
     implements(qi_interfaces.INonInstallable)
 
     def getNonInstallableProducts(self):
@@ -20,6 +21,7 @@ class HiddenProducts(object):
 
 
 class HiddenProfiles(object):
+    """ Oculta profiles da tela inicial de criacao do site """
     implements(plone_interfaces.INonInstallable)
 
     def getNonInstallableProfiles(self):
