@@ -1,7 +1,7 @@
 Alterações
 ------------
 
-1.0.2 (unreleased)
+1.0.2 (2014-02-28)
 ^^^^^^^^^^^^^^^^^^
 
 * Renomeia pacote para .gov.br.
