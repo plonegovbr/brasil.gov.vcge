@@ -76,6 +76,21 @@ class TestVCGECondition(unittest.TestCase):
                                    name=element.editview)
         self.failUnless(isinstance(editview, VCGEEditForm))
 
+    def test_summary_empty_vcge(self):
+        e = VCGECondition()
+        self.assertEqual(e.summary, u"Nenhum termo selecionado")
+
+    def test_summary_with_vcge(self):
+        from plone.app.contentrules import PloneMessageFactory as _
+        e = VCGECondition()
+        e.skos = [self.term, ]
+        msg = _(u"VCGE contém ${skos}",
+                mapping=dict(skos=" or ".join(e.skos)))
+        self.assertEqual(
+            e.summary,
+            msg
+        )
+
     def test_execute(self):
         e = VCGECondition()
         e.skos = [self.term, ]

@@ -89,6 +89,25 @@ class TestSubjectAction(unittest.TestCase):
                                    name=element.editview)
         self.failUnless(isinstance(editview, VCGEEditForm))
 
+    def test_summary_parent_vcge(self):
+        e = VCGEAction()
+        e.same_as_parent = True
+        self.assertEqual(
+            e.summary,
+            u"Aplica termos da pasta no conteúdo."
+        )
+
+    def test_summary_with_vcge(self):
+        from plone.app.contentrules import PloneMessageFactory as _
+        e = VCGEAction()
+        e.skos = [self.term, ]
+        msg = _(u"Aplica os termos ${skos}",
+                mapping=dict(skos=" or ".join(e.skos)))
+        self.assertEqual(
+            e.summary,
+            msg
+        )
+
     def test_execute_with_vcge(self):
         e = VCGEAction()
         e.same_as_parent = False
@@ -132,5 +151,15 @@ class TestSubjectAction(unittest.TestCase):
         o = folder['cmf']
         ex = getMultiAdapter((folder, e,
                              DummyEvent(o)),
+                             IExecutable)
+        self.assertEquals(False, ex())
+
+    def test_execute_parent_without_vcge_attribute(self):
+        e = VCGEAction()
+        e.same_as_parent = True
+        e.skos = []
+        delattr(self.folder, 'skos')
+        ex = getMultiAdapter((self.folder, e,
+                             DummyEvent(self.sub_folder)),
                              IExecutable)
         self.assertEquals(False, ex())
