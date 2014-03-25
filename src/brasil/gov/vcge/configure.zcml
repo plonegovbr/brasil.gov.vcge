@@ -1,43 +1,41 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="brasil.gov.vcge">
 
-    <includeDependencies package="." />
-	<include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
+  <five:registerPackage package="." />
+  <includeDependencies package="." />
+  <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
 
-    <include package=".browser" />
-    <include package=".contentrules" />
-    <include package=".controlpanel" />
-    <include package=".upgrades" />
+  <include package=".browser" />
+  <include package=".contentrules" />
+  <include package=".controlpanel" />
+  <include package=".upgrades" />
 
-    <!-- Apenas se ATContentTypes (Archetypes) estiver instalado -->
-  	<include zcml:condition="installed Products.ATContentTypes" package=".at" />
+  <!-- Apenas se ATContentTypes (Archetypes) estiver instalado -->
+  <include zcml:condition="installed Products.ATContentTypes" package=".at" />
 
-    <!-- Apenas se Dexterity estiver instalado -->
-  	<include zcml:condition="installed plone.app.dexterity" package=".dx" />
+  <!-- Apenas se Dexterity estiver instalado -->
+  <include zcml:condition="installed plone.app.dexterity" package=".dx" />
 
-    <!-- Registra o diretorio com traducoes -->
-    <i18n:registerTranslations directory="locales" />
+  <!-- Registra o diretorio com traducoes -->
+  <i18n:registerTranslations directory="locales" />
 
-    <!-- Profiles do Generic Setup -->
-    <include file="profiles.zcml" />
+  <!-- Profiles do Generic Setup -->
+  <include file="profiles.zcml" />
 
-    <!-- Vocabulario -->
-	<utility
-	     component=".vocabulary.VCGEVocabularyFactory"
-	     name="brasil.gov.vcge"
-	/>
+  <!-- Vocabulario -->
+  <utility
+      component=".vocabulary.VCGEVocabularyFactory"
+      name="brasil.gov.vcge"
+      />
 
-    <!-- Oculta products -->
-    <utility
-        factory=".config.HiddenProducts"
-        name="brasil.gov.vcge" />
+  <!-- Oculta products -->
+  <utility factory=".config.HiddenProducts" name="brasil.gov.vcge" />
 
-    <!-- Oculta profile -->
-    <utility
-        factory=".config.HiddenProfiles"
-        name="brasil.gov.vcge" />
+  <!-- Oculta profile -->
+  <utility factory=".config.HiddenProfiles" name="brasil.gov.vcge" />
 
 </configure>

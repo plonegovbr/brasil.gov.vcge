@@ -37,13 +37,13 @@ class TestVCGE(unittest.TestCase):
 
     def test_skos_setter(self):
         b = self._makeOne()
-        token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
+        token = 'http://vocab.e.gov.br/id/governo#cultura'
         b.skos = token
         self.assertEqual(token, b.context.skos)
 
     def test_skos_getter(self):
         b = self._makeOne()
-        token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
+        token = 'http://vocab.e.gov.br/id/governo#cultura'
         b.context.skos = token
         self.assertEqual(token, b.skos)
 
@@ -58,7 +58,7 @@ class TestBehavior(unittest.TestCase):
         login(self.portal, TEST_USER_NAME)
 
     def setUpContent(self):
-        token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
+        token = 'http://vocab.e.gov.br/id/governo#cultura'
         self.token = token
         portal = self.portal
         oId = portal.invokeFactory('folder', 'content')
@@ -99,7 +99,7 @@ class TestViewlet(unittest.TestCase):
         login(self.portal, TEST_USER_NAME)
 
     def setUpContent(self):
-        token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
+        token = 'http://vocab.e.gov.br/id/governo#cultura'
         portal = self.portal
         oId = portal.invokeFactory('folder', 'content')
         o = portal[oId]
@@ -133,7 +133,7 @@ class TestViewlet(unittest.TestCase):
         skos = viewlet.skos()
         self.assertEquals(len(skos), 1)
         term = skos[0]
-        self.assertEquals(term.get('title'), u'Achados e perdidos')
+        self.assertEquals(term.get('title'), u'Cultura')
 
     def test_skos_not_existent(self):
         ''' Testa o que acontece quando nao temos o Extender
