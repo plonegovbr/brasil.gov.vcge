@@ -1,0 +1,37 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plone">
+
+    <!-- Condicao -->
+    <plone:ruleCondition
+        name="brasil.gov.vcge.conditions.VCGE"
+        title="VCGE"
+        description="Aplica uma regra apenas quando um termo do VCGE estiver disponível"
+        for="*"
+        event="zope.component.interfaces.IObjectEvent"
+        addview="brasil.gov.vcge.conditions.VCGE"
+        editview="edit"
+        schema=".condition.IVCGECondition"
+        factory=".condition.VCGECondition"
+    />
+
+    <adapter factory=".condition.VCGEConditionExecutor" />
+
+    <browser:page 
+      for="plone.app.contentrules.browser.interfaces.IRuleConditionAdding"
+      name="brasil.gov.vcge.conditions.VCGE"
+      class=".condition.VCGEAddForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <browser:page 
+      for="brasil.gov.vcge.contentrules.condition.IVCGECondition"
+      name="edit"
+      class=".condition.VCGEEditForm"
+      permission="cmf.ManagePortal"
+      />
+  
+
+</configure>
