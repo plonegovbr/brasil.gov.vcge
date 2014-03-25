@@ -1,0 +1,67 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="plone">
+
+    <include package="plone.app.contentrules" />
+
+    <!-- Condicao -->
+    <plone:ruleCondition
+        name="brasil.gov.vcge.conditions.VCGE"
+        title="VCGE"
+        description="Aplica uma regra apenas quando um termo do VCGE estiver disponível"
+        for="*"
+        event="zope.component.interfaces.IObjectEvent"
+        addview="brasil.gov.vcge.conditions.VCGE"
+        editview="edit"
+        schema=".condition.IVCGECondition"
+        factory=".condition.VCGECondition"
+    />
+
+    <adapter factory=".condition.VCGEConditionExecutor" />
+
+    <browser:page 
+      for="plone.app.contentrules.browser.interfaces.IRuleConditionAdding"
+      name="brasil.gov.vcge.conditions.VCGE"
+      class=".condition.VCGEAddForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <browser:page 
+      for="brasil.gov.vcge.contentrules.condition.IVCGECondition"
+      name="edit"
+      class=".condition.VCGEEditForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <!-- Acao -->
+    <plone:ruleAction
+        name="brasil.gov.vcge.actions.VCGE"
+        title="Aplicar termos VCGE"
+        description="Aplica termos do VCGE a um conteúdo"
+        for="*"
+        event="zope.component.interfaces.IObjectEvent"
+        addview="brasil.gov.vcge.actions.VCGE"
+        editview="edit"
+        schema=".action.IVCGEAction"
+        factory=".action.VCGEAction"
+        />
+
+    <adapter factory=".action.VCGEActionExecutor" />
+
+    <browser:page
+      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+      name="brasil.gov.vcge.actions.VCGE"
+      class=".action.VCGEAddForm"
+      permission="cmf.ManagePortal"
+      />
+
+    <browser:page
+      for="brasil.gov.vcge.contentrules.action.IVCGEAction"
+      name="edit"
+      class=".action.VCGEEditForm"
+      permission="cmf.ManagePortal"
+      />
+
+</configure>

@@ -4,8 +4,13 @@ Alterações
 1.0.3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+* Adiciona ação de regra de conteúdo para aplicação de termos
+  VCGE a conteúdos
+  [ericof]
 
+* Adiciona condição de regra de conteúdo baseada nos termos
+  VCGE
+  [ericof]
 
 1.0.2 (2014-02-28)
 ^^^^^^^^^^^^^^^^^^
