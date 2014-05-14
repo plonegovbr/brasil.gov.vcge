@@ -30,7 +30,7 @@ def parse_skos(data, format='xml'):
         oId = obj[0].toPython()
         title = unicode(obj[2])
         lang = obj[2].language
-        if not oId in termos:
+        if oId not in termos:
             termos[oId] = {'title': u'', 'lang': u''}
         termos[oId]['title'] = title
         termos[oId]['lang'] = lang

@@ -55,7 +55,7 @@ class TestInstall(BaseTestCase):
 
     def test_browserlayer(self):
         from brasil.gov.vcge.interfaces import IVCGEInstalado
-        self.assertTrue(IVCGEInstalado in registered_layers())
+        self.assertIn(IVCGEInstalado, registered_layers())
 
     def test_cssregistry(self):
         portal_css = self.portal.portal_css
