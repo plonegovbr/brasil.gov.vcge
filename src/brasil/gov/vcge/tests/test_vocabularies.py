@@ -20,7 +20,7 @@ class VocabulariesTestCase(unittest.TestCase):
         self.assertTrue(util is not None)
         vcge = util(self.portal)
         self.assertEqual(len(vcge), 1464)
-        token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
-        title = u'Achados e perdidos'
+        token = 'http://vocab.e.gov.br/id/governo#cultura'
+        title = u'Cultura'
         term = vcge.by_token[token]
         self.assertEqual(term.title, title)

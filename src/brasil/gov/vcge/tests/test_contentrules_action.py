@@ -29,7 +29,7 @@ class TestSubjectAction(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
 
-    term = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
+    term = 'http://vocab.e.gov.br/id/governo#cultura'
 
     def setUp(self):
         self.portal = self.layer['portal']

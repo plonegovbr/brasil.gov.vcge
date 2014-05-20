@@ -24,10 +24,10 @@ class VCGEVocabulary(object):
       >>> len(terms.by_token)
       1464
 
-      >>> token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
+      >>> token = 'http://vocab.e.gov.br/id/governo#cultura'
       >>> doc = terms.by_token[token]
       >>> doc.title, doc.token, doc.value
-      (u'Achados e perdidos', token, token)
+      (u'Cultura', token, token)
     """
     implements(IVocabularyFactory)
 
