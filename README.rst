@@ -39,6 +39,15 @@ Este produto utiliza um arquivo `SKOS
 W3C para representar vocabulários controlados, dentre outras estruturas de
 classificação.
 
+Versionamento
+---------------------
+
+As versões 1.x deste pacote se referem ao VCGE 1.0
+
+As versões 2.x deste pacote se referem ao VCGE 2.0.
+
+Ainda não existe um caminho de migração de termos do VCGE 1.0 para o VCGE 2.0, portanto utilize o VCGE 2.0 apenas em **novos** projetos.
+
 Estado deste pacote
 ---------------------
 
