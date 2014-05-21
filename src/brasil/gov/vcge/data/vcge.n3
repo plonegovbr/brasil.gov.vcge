@@ -828,7 +828,7 @@
 	dcterms:modified "2013-11-12"^^xsd:date ;
 	skos:inScheme <#esquema> .
 
-<#vigilância-sanitaria> a skos:Concept ;
+<#vigilancia-sanitaria> a skos:Concept ;
 	skos:notation "188" ;
 	skos:prefLabel "Vigilância Sanitária"@pt ;
 	skos:broader <#saude> ;
