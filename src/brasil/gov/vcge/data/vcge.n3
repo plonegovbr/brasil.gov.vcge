@@ -1,4 +1,4 @@
-@base <http://vocab.e.gov.br/id/governo> .
+@base <http://vocab.e.gov.br/2013/11/vcge> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -828,7 +828,7 @@
 	dcterms:modified "2013-11-12"^^xsd:date ;
 	skos:inScheme <#esquema> .
 
-<#vigilancia-sanitaria> a skos:Concept ;
+<#vigilância-sanitaria> a skos:Concept ;
 	skos:notation "188" ;
 	skos:prefLabel "Vigilância Sanitária"@pt ;
 	skos:broader <#saude> ;
