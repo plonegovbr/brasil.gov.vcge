@@ -1,6 +1,23 @@
 Alterações
 ------------
 
+2.0.0 (unreleased)
+^^^^^^^^^^^^^^^^^^
+
+* Atualiza o VCGE para sua versão 2.0.2, substituindo o arquivo vcge.n3.
+  [cfviotti]
+
+* Corrige a namespace URI, e retira acentuação gráfica da id de Vigilância 
+  Sanitária do arquivo vcge.n3.
+  [cfviotti]
+
+* Atualiza os arquivos de testes do plugin para funcionarem com a nova 
+  versão do arquivo vcge.n3. Modificou-se o termo utilizado nos tokens 
+  para um que estivesse disponível nesta nova versão, no caso,
+  o termo #Cultura. Atualizado também o número de termos do VCGE, de 1464
+  para 114. 
+  [cfviotti]
+
 1.0.3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
