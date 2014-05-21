@@ -22,7 +22,7 @@ class VCGEVocabulary(object):
       <zope.schema.vocabulary.SimpleVocabulary object at ...>
 
       >>> len(terms.by_token)
-      1464
+      114
 
       >>> token = 'http://vocab.e.gov.br/id/governo#cultura'
       >>> doc = terms.by_token[token]
