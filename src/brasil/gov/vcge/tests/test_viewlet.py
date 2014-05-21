@@ -20,7 +20,7 @@ class TestViewlet(unittest.TestCase):
         login(self.portal, TEST_USER_NAME)
 
     def setUpContent(self):
-        token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
+        token = 'http://vocab.e.gov.br/id/governo#cultura'
         portal = self.portal
         oId = portal.invokeFactory('Document', 'doc')
         o = portal[oId]
@@ -49,7 +49,7 @@ class TestViewlet(unittest.TestCase):
         skos = viewlet.skos()
         self.assertEquals(len(skos), 1)
         term = skos[0]
-        self.assertEquals(term.get('title'), u'Achados e perdidos')
+        self.assertEquals(term.get('title'), u'Cultura')
 
     def test_skos_not_existent(self):
         ''' Testa o que acontece quando nao temos o Extender
