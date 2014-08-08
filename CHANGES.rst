@@ -1,7 +1,7 @@
 Alterações
 ------------
 
-2.0.0 (unreleased)
+2.0.0 (2014-08-08)
 ^^^^^^^^^^^^^^^^^^
 
 * Atualiza o VCGE para sua versão 2.0.2, substituindo o arquivo vcge.n3.
