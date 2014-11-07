@@ -1,10 +1,10 @@
 # -*- coding:utf-8 -*-
+from Products.Archetypes import public as atapi
+from Products.Archetypes.interfaces import IBaseContent
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender
 from brasil.gov.vcge import MessageFactory as _
 from brasil.gov.vcge.interfaces import IVCGEInstalado
-from Products.Archetypes import public as atapi
-from Products.Archetypes.interfaces import IBaseContent
 from raptus.autocompletewidget.widget import AutocompleteMultiSelectionWidget
 from zope.component import adapts
 from zope.interface import implements

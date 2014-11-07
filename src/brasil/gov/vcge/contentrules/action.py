@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_parent
-from brasil.gov.vcge.contentrules import utils
 from OFS.SimpleItem import SimpleItem
-from plone.app.contentrules import PloneMessageFactory as _
+from brasil.gov.vcge import MessageFactory as _
+from brasil.gov.vcge.contentrules import utils
 from plone.app.contentrules.browser.formhelper import AddForm
 from plone.app.contentrules.browser.formhelper import EditForm
 from plone.contentrules.rule.interfaces import IExecutable
 from plone.contentrules.rule.interfaces import IRuleElementData
 from zope.component import adapts
 from zope.formlib import form
-from zope.interface import implements
 from zope.interface import Interface
+from zope.interface import implements
 from zope.schema import Bool
 from zope.schema import Choice
 from zope.schema import Set
@@ -18,9 +18,9 @@ from zope.schema import Set
 
 VOCAB = 'brasil.gov.vcge'
 
-FORM_NAME = _(u"Configurar a ação")
+FORM_NAME = _(u"Configure the action")
 
-FORM_DESC = _(u'Uma ação que aplica termos do VGCE a um conteúdo')
+FORM_DESC = _(u'An action that applies VGCE terms to content')
 
 
 class IVCGEAction(Interface):
@@ -28,15 +28,15 @@ class IVCGEAction(Interface):
         desta ação.
     """
 
-    same_as_parent = Bool(title=_(u"Utilizar os termos da pasta"),
-                          description=_(u"Selecione esta opção para que os "
-                                        u"termos VCGE sejam herdados da "
-                                        u"pasta que abriga o conteúdo. "
-                                        u"Selecionar esta opção ignora "
-                                        u"os termos do campo a seguir."))
+    same_as_parent = Bool(title=_(u"Use folder terms"),
+                          description=_(u"Select this option to have the "
+                                        u"VCGE terms inherited from the "
+                                        u"folder that holds the content. "
+                                        u"Selecting this option ignores "
+                                        u"the terms of the field below."))
 
     skos = Set(title=_(u'VCGE'),
-               description=_(u'Termos a serem aplicados ao conteúdo.'),
+               description=_(u'Terms to be applied to the content.'),
                required=False,
                value_type=Choice(vocabulary=VOCAB))
 
@@ -55,9 +55,9 @@ class VCGEAction(SimpleItem):
         same_as_parent = self.same_as_parent
         skos = self.skos
         if same_as_parent:
-            msg = _(u"Aplica termos da pasta no conteúdo.")
+            msg = _(u"Applies folder terms to content.")
         else:
-            msg = _(u"Aplica os termos ${skos}",
+            msg = _(u"Applies the terms ${skos}",
                     mapping=dict(skos=", ".join(skos)))
         return msg
 
@@ -94,7 +94,7 @@ class VCGEAddForm(AddForm):
     """ Formulario de adicao para acao VCGE
     """
     form_fields = form.FormFields(IVCGEAction)
-    label = _(u"Adicionar ação VCGE na regra de conteúdo")
+    label = _(u"Add VCGE action to the content rule")
     description = FORM_DESC
     form_name = FORM_NAME
 
@@ -108,6 +108,6 @@ class VCGEEditForm(EditForm):
     """ Formulario de adicao para edicao VCGE
     """
     form_fields = form.FormFields(IVCGEAction)
-    label = _(u"Editar ação VCGE na regra de conteúdo")
+    label = _(u"Edit VCGE action on the content rule")
     description = FORM_DESC
     form_name = FORM_NAME

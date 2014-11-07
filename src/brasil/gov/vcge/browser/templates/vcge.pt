@@ -3,7 +3,7 @@
      class="documentByLine"
      tal:define="categories view/skos|nothing;"
      tal:condition="categories">
-  <tal:filedunder i18n:translate="">Assunto(s):</tal:filedunder>
+  <tal:filedunder i18n:translate="">Subject(s):</tal:filedunder>
   <span tal:repeat="category categories">
     <a href=""
        class="link-category"

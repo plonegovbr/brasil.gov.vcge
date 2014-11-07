@@ -4,12 +4,15 @@ Alterações
 1.0.3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+* Adiciona internacionalização Português e Espanhol.
+  [dbarbato]
+
 * Adiciona ação de regra de conteúdo para aplicação de termos
-  VCGE a conteúdos
+  VCGE a conteúdos.
   [ericof]
 
 * Adiciona condição de regra de conteúdo baseada nos termos
-  VCGE
+  VCGE.
   [ericof]
 
 1.0.2 (2014-02-28)

@@ -1,58 +1,60 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: brasil.gov.vcge\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-11-07 16:52+0000\n"
-"PO-Revision-Date: 2012-09-18 23:00+0000\n"
-"Last-Translator: PloneGov.Br <gov@plone.org.br>\n"
+"PO-Revision-Date: 2014-11-06 15:40-0200\n"
+"Last-Translator: Danilo Sartorelli Barbato <dadlobr@gmail.com>\n"
 "Language-Team: PloneGov.Br <gov@plone.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"Language-Code: pt_BR\n"
-"Language-Name: Português do Brasil\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: es\n"
+"Language-Name: Español\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: brasil.gov.vcge\n"
+"Language: es\n"
+"X-Is-Fallback-For: es-ar es-bo es-cl es-co es-cr es-do es-ec es-es es-sv es-gt es-hn es-mx es-ni es-pa es-py es-pe es-pr es-us es-uy es-ve\n"
 
 #: ../contentrules/condition.py:21
 msgid "A VGCE condition performs a content rule only if one of the selected terms is present. If no term is selected, the rule will be implemented only in content without VCGE terms applied."
-msgstr "Uma condição VGCE executa uma regra de conteúdo apenas se um dos termos selecionados estiver presente. Caso nenhum termo seja selecionado a regra será executada apenas em conteúdos semtermos VCGE aplicados."
+msgstr "Una condición VGCE realiza una regla de contenido sólo si uno de los términos seleccionados está presente. Si no se selecciona ningún plazo, la regla se aplicará sólo en el contenido sin términos VCGE aplican."
 
 #: ../contentrules/action.py:97
 msgid "Add VCGE action to the content rule"
-msgstr "Adicionar ação VCGE na regra de conteúdo"
+msgstr "Añadir acción VCGE a la regla de contenido"
 
 #: ../contentrules/condition.py:89
 msgid "Add VCGE condition"
-msgstr "Adicionar condição VCGE"
+msgstr "Añadir condición VCGE"
 
 #: ../contentrules/action.py:23
 msgid "An action that applies VGCE terms to content"
-msgstr "Uma ação que aplica termos do VGCE a um conteúdo"
+msgstr "Una acción que se aplica términos VGCE al contenido"
 
 #: ../contentrules/action.py:58
 msgid "Applies folder terms to content."
-msgstr "Aplica termos da pasta no conteúdo."
+msgstr "Aplica términos de carpetas a contenido."
 
 #: ../contentrules/action.py:60
 msgid "Applies the terms ${skos}"
-msgstr "Aplica os termos ${skos}"
+msgstr "Aplica los términos ${skos}"
 
 #: ../contentrules/action.py:21
 msgid "Configure the action"
-msgstr "Configurar a ação"
+msgstr "Configure la acción"
 
 #: ../contentrules/condition.py:19
 msgid "Configure the condition"
-msgstr "Configurar a condição"
+msgstr "Configure la condición"
 
 #: ../contentrules/action.py:111
 msgid "Edit VCGE action on the content rule"
-msgstr "Editar ação VCGE na regra de conteúdo"
+msgstr "Editar acción VCGE en la regla de contenido"
 
 #: ../contentrules/condition.py:104
 msgid "Edit condition VCGE"
-msgstr "Editar condição VCGE"
+msgstr "Editar condición VCGE"
 
 #: ../profiles/default/registry.xml
 #: ../upgrades/v2000/profile/registry.xml
@@ -61,45 +63,45 @@ msgstr ""
 
 #: ../contentrules/condition.py:51
 msgid "No terms selected"
-msgstr "Nenhum termo selecionado"
+msgstr "Ningún término seleccionado"
 
 #: ../contentrules/action.py:32
 msgid "Select this option to have the VCGE terms inherited from the folder that holds the content. Selecting this option ignores the terms of the field below."
-msgstr "Selecione esta opção para que os termos VCGE sejam herdados da pasta que abriga o conteúdo. Selecionar esta opção ignora os termos do campo a seguir."
+msgstr "Seleccione esta opción para los términos VCGE que se heredan de la carpeta que contiene el contenido. Al seleccionar esta opción ignora los términos del campo de abajo."
 
 #: ../browser/templates/vcge.pt:6
 msgid "Subject(s):"
-msgstr "Assunto(s):"
+msgstr "Asunto(s):"
 
 #: ../contentrules/action.py:39
 msgid "Terms to be applied to the content."
-msgstr "Termos a serem aplicados ao conteúdo."
+msgstr "Condiciones que han de aplicarse a los contenidos."
 
 #: ../contentrules/condition.py:33
 msgid "Terms to be searched. Leave blank to select content with no VCGE term applied."
-msgstr "Termos a serem procurados. Deixe em branco para selecionar conteúdos sem nenhum termo VCGE aplicado."
+msgstr "Condiciones para ser buscados. Dejar en blanco para seleccionar el contenido sin término VCGE aplicado."
 
 #: ../contentrules/action.py:31
 msgid "Use folder terms"
-msgstr "Utilizar os termos da pasta"
+msgstr "Utilice términos de carpetas"
 
 #: ../at/extender.py:39
 #: ../contentrules/action.py:38
 #: ../contentrules/condition.py:32
 msgid "VCGE"
-msgstr "VCGE"
+msgstr ""
 
 #: ../contentrules/condition.py:53
 msgid "VCGE contains ${skos}"
-msgstr "VCGE contém ${skos}"
+msgstr "VCGE contiene ${skos}"
 
 #: ../profiles/default/registry.xml
 #: ../upgrades/v2000/profile/registry.xml
 msgid "Vocabulario Controlado do Governo Eletronico"
-msgstr ""
+msgstr "Vocabulario Controlado para Gobierno Electrónico"
 
 #: ../at/extender.py:40
 #: ../dx/behaviors.py:26
 msgid "vcge_desc"
-msgstr "Vocabulário Controlado do Governo Eletrônico: Ao digitar um termo serão apresentados os itens do vocabulário que contenham este termo."
+msgstr "Vocabulario Controlado para Gobierno Electrónico: Será presentado al escribir un vocabulario entradas plazo que contienen este término."
 

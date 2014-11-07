@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: brasil.gov.vcge\n"
-"POT-Creation-Date: 2013-03-07 00:46+0000\n"
+"POT-Creation-Date: 2014-11-07 16:52+0000\n"
 "PO-Revision-Date: 2012-09-18 23:00+0000\n"
 "Last-Translator: PloneGov.Br <gov@plone.org.br>\n"
 "Language-Team: PloneGov.Br <gov@plone.org.br>\n"
@@ -14,11 +14,92 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ../extender.py:37
+#: ../contentrules/condition.py:21
+msgid "A VGCE condition performs a content rule only if one of the selected terms is present. If no term is selected, the rule will be implemented only in content without VCGE terms applied."
+msgstr ""
+
+#: ../contentrules/action.py:97
+msgid "Add VCGE action to the content rule"
+msgstr ""
+
+#: ../contentrules/condition.py:89
+msgid "Add VCGE condition"
+msgstr ""
+
+#: ../contentrules/action.py:23
+msgid "An action that applies VGCE terms to content"
+msgstr ""
+
+#: ../contentrules/action.py:58
+msgid "Applies folder terms to content."
+msgstr ""
+
+#: ../contentrules/action.py:60
+msgid "Applies the terms ${skos}"
+msgstr ""
+
+#: ../contentrules/action.py:21
+msgid "Configure the action"
+msgstr ""
+
+#: ../contentrules/condition.py:19
+msgid "Configure the condition"
+msgstr ""
+
+#: ../contentrules/action.py:111
+msgid "Edit VCGE action on the content rule"
+msgstr ""
+
+#: ../contentrules/condition.py:104
+msgid "Edit condition VCGE"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+#: ../upgrades/v2000/profile/registry.xml
+msgid "Metadata"
+msgstr ""
+
+#: ../contentrules/condition.py:51
+msgid "No terms selected"
+msgstr ""
+
+#: ../contentrules/action.py:32
+msgid "Select this option to have the VCGE terms inherited from the folder that holds the content. Selecting this option ignores the terms of the field below."
+msgstr ""
+
+#: ../browser/templates/vcge.pt:6
+msgid "Subject(s):"
+msgstr ""
+
+#: ../contentrules/action.py:39
+msgid "Terms to be applied to the content."
+msgstr ""
+
+#: ../contentrules/condition.py:33
+msgid "Terms to be searched. Leave blank to select content with no VCGE term applied."
+msgstr ""
+
+#: ../contentrules/action.py:31
+msgid "Use folder terms"
+msgstr ""
+
+#: ../at/extender.py:39
+#: ../contentrules/action.py:38
+#: ../contentrules/condition.py:32
 msgid "VCGE"
 msgstr ""
 
-#: ../extender.py:38
+#: ../contentrules/condition.py:53
+msgid "VCGE contains ${skos}"
+msgstr ""
+
+#: ../profiles/default/registry.xml
+#: ../upgrades/v2000/profile/registry.xml
+msgid "Vocabulario Controlado do Governo Eletronico"
+msgstr ""
+
+#: ../at/extender.py:40
+#: ../dx/behaviors.py:26
 msgid "vcge_desc"
 msgstr ""
 
