@@ -3,7 +3,7 @@ from Products.Archetypes import public as atapi
 from Products.Archetypes.interfaces import IBaseContent
 from archetypes.schemaextender.field import ExtensionField
 from archetypes.schemaextender.interfaces import IBrowserLayerAwareExtender
-from brasil.gov.vcge import MessageFactory as _
+from brasil.gov.vcge import _ as _
 from brasil.gov.vcge.interfaces import IVCGEInstalado
 from raptus.autocompletewidget.widget import AutocompleteMultiSelectionWidget
 from zope.component import adapts

@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from brasil.gov.vcge import MessageFactory as _
+from brasil.gov.vcge import _ as _
 from brasil.gov.vcge.dx.widget import SkosFieldWidget
 from plone.autoform import directives as form
 from plone.autoform.interfaces import IFormFieldProvider

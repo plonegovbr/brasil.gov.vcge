@@ -78,13 +78,13 @@ class TestVCGECondition(unittest.TestCase):
 
     def test_summary_empty_vcge(self):
         e = VCGECondition()
-        self.assertEqual(e.summary, u"Nenhum termo selecionado")
+        self.assertEqual(e.summary, u"No terms selected")
 
     def test_summary_with_vcge(self):
         from plone.app.contentrules import PloneMessageFactory as _
         e = VCGECondition()
         e.skos = [self.term, ]
-        msg = _(u"VCGE contém ${skos}",
+        msg = _(u"VCGE contains ${skos}",
                 mapping=dict(skos=" or ".join(e.skos)))
         self.assertEqual(
             e.summary,

@@ -1,5 +1,4 @@
-# -*- coding:utf-8 -*-
-from zope.i18nmessageid import MessageFactory as BaseMessageFactory
+# -*- coding: utf-8 -*-
+from zope.i18nmessageid import MessageFactory
 
-
-MessageFactory = BaseMessageFactory('brasil.gov.vcge')
+_ = MessageFactory('brasil.gov.vcge')

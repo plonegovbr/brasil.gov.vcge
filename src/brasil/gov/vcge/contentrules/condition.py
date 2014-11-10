@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from Acquisition import aq_inner
 from OFS.SimpleItem import SimpleItem
-from brasil.gov.vcge import MessageFactory as _
+from brasil.gov.vcge import _ as _
 from brasil.gov.vcge.contentrules import utils
 from plone.app.contentrules.browser.formhelper import AddForm
 from plone.app.contentrules.browser.formhelper import EditForm

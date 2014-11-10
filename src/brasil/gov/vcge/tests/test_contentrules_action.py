@@ -94,14 +94,14 @@ class TestSubjectAction(unittest.TestCase):
         e.same_as_parent = True
         self.assertEqual(
             e.summary,
-            u"Aplica termos da pasta no conteúdo."
+            u"Applies folder terms to content."
         )
 
     def test_summary_with_vcge(self):
         from plone.app.contentrules import PloneMessageFactory as _
         e = VCGEAction()
         e.skos = [self.term, ]
-        msg = _(u"Aplica os termos ${skos}",
+        msg = _(u"Applies the terms ${skos}",
                 mapping=dict(skos=" or ".join(e.skos)))
         self.assertEqual(
             e.summary,
