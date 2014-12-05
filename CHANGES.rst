@@ -1,8 +1,8 @@
 Alterações
 ------------
 
-c (unreleased)
-^^^^^^^^^^^^^^
+2.0.1 (unreleased)
+^^^^^^^^^^^^^^^^^^
 
 - Nothing changed yet.
 
