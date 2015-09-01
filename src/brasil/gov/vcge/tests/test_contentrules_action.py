@@ -36,7 +36,7 @@ class TestSubjectAction(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.portal.invokeFactory('Folder', 'folder')
         self.folder = self.portal['folder']
-        self.folder.skos = [self.term, ]
+        self.folder.vcge = [self.term, ]
         self.folder.reindexObject()
         sub_folder_id = self.folder.invokeFactory('Folder', 'sub_folder')
         self.sub_folder = self.folder[sub_folder_id]
@@ -74,12 +74,12 @@ class TestSubjectAction(unittest.TestCase):
                                   name=element.addview)
 
         addview.createAndAdd(data={'same_as_parent': False,
-                                   'skos': [self.term, ]})
+                                   'vcge': [self.term, ]})
 
         e = rule.actions[0]
         self.failUnless(isinstance(e, VCGEAction))
         self.assertEquals(False, e.same_as_parent)
-        self.assertEquals([self.term, ], e.skos)
+        self.assertEquals([self.term, ], e.vcge)
 
     def test_invoke_edit_view(self):
         element = getUtility(IRuleAction,
@@ -100,9 +100,9 @@ class TestSubjectAction(unittest.TestCase):
     def test_summary_with_vcge(self):
         from plone.app.contentrules import PloneMessageFactory as _
         e = VCGEAction()
-        e.skos = [self.term, ]
-        msg = _(u"Aplica os termos ${skos}",
-                mapping=dict(skos=" or ".join(e.skos)))
+        e.vcge = [self.term, ]
+        msg = _(u"Aplica os termos ${vcge}",
+                mapping=dict(vcge=" or ".join(e.vcge)))
         self.assertEqual(
             e.summary,
             msg
@@ -111,32 +111,32 @@ class TestSubjectAction(unittest.TestCase):
     def test_execute_with_vcge(self):
         e = VCGEAction()
         e.same_as_parent = False
-        e.skos = ['http://vocab.e.gov.br/2011/03/vcge#governo', ]
+        e.vcge = ['http://vocab.e.gov.br/id/governo#cultura', ]
 
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(self.sub_folder)),
                              IExecutable)
         self.assertEquals(True, ex())
 
-        self.assertEquals(list(self.sub_folder.skos),
-                          e.skos)
+        self.assertEquals(list(self.sub_folder.vcge),
+                          e.vcge)
 
     def test_execute_same_as_parent(self):
         e = VCGEAction()
         e.same_as_parent = True
-        e.skos = []
+        e.vcge = []
 
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(self.sub_folder)),
                              IExecutable)
         self.assertEquals(True, ex())
 
-        self.assertEquals(self.sub_folder.skos, self.folder.skos)
+        self.assertEquals(self.sub_folder.vcge, self.folder.vcge)
 
     def test_execute_object_without_vcge(self):
         e = VCGEAction()
         e.same_as_parent = False
-        e.skos = ['http://vocab.e.gov.br/2011/03/vcge#governo', ]
+        e.vcge = ['http://vocab.e.gov.br/id/governo#cultura', ]
         o = self.folder['cmf']
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(o)),
@@ -146,7 +146,7 @@ class TestSubjectAction(unittest.TestCase):
     def test_execute_parent_without_vcge(self):
         e = VCGEAction()
         e.same_as_parent = True
-        e.skos = []
+        e.vcge = []
         folder = self.folder['cmf_folder']
         o = folder['cmf']
         ex = getMultiAdapter((folder, e,
@@ -157,8 +157,8 @@ class TestSubjectAction(unittest.TestCase):
     def test_execute_parent_without_vcge_attribute(self):
         e = VCGEAction()
         e.same_as_parent = True
-        e.skos = []
-        delattr(self.folder, 'skos')
+        e.vcge = []
+        delattr(self.folder, 'vcge')
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(self.sub_folder)),
                              IExecutable)

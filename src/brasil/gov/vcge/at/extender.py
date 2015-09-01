@@ -32,7 +32,7 @@ class VCGEExtender(object):
     layer = IVCGEInstalado
 
     fields = [
-        ExtensionLinesField("skos",
+        ExtensionLinesField("vcge",
                             schemata="categorization",
                             vocabulary_factory='brasil.gov.vcge',
                             enforceVocabulary=True,

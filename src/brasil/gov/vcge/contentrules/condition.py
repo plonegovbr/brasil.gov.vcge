@@ -29,7 +29,7 @@ class IVCGECondition(Interface):
         desta condicao.
     """
 
-    skos = Set(title=_(u'VCGE'),
+    vcge = Set(title=_(u'VCGE'),
                description=_(u'Termos a serem procurados. Deixe em branco '
                              u'para selecionar conteúdos sem nenhum termo VCGE '
                              u'aplicado.'),
@@ -42,17 +42,17 @@ class VCGECondition(SimpleItem):
     """
     implements(IVCGECondition, IRuleElementData)
 
-    skos = []
+    vcge = []
     element = "brasil.gov.vcge.conditions.VCGE"
 
     @property
     def summary(self):
-        skos = self.skos
-        if not skos:
+        vcge = self.vcge
+        if not vcge:
             msg = _(u"Nenhum termo selecionado")
         else:
-            msg = _(u"VCGE contém ${skos}",
-                    mapping=dict(skos=" or ".join(skos)))
+            msg = _(u"VCGE contém ${vcge}",
+                    mapping=dict(vcge=" or ".join(vcge)))
         return msg
 
 
@@ -69,16 +69,16 @@ class VCGEConditionExecutor(object):
         self.event = event
 
     def __call__(self):
-        expected = self.element.skos
+        expected = self.element.vcge
         obj = aq_inner(self.event.object)
 
         if not (utils.vcge_available(obj)):
             return False
 
-        skos = utils.vcge_for_object(obj)
+        vcge = utils.vcge_for_object(obj)
         if not expected:
-            return not (expected or skos)
-        intersection = set(expected).intersection(skos)
+            return not (expected or vcge)
+        intersection = set(expected).intersection(vcge)
         return intersection and True or False
 
 

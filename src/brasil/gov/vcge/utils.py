@@ -34,4 +34,5 @@ def parse_skos(data, format='xml'):
             termos[oId] = {'title': u'', 'lang': u''}
         termos[oId]['title'] = title
         termos[oId]['lang'] = lang
+
     return termos

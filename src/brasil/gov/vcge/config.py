@@ -17,6 +17,7 @@ class HiddenProducts(object):
     def getNonInstallableProducts(self):
         return [
             'brasil.gov.vcge.upgrades.v2000',
+            'brasil.gov.vcge.upgrades.v2001',
         ]
 
 
@@ -27,5 +28,6 @@ class HiddenProfiles(object):
     def getNonInstallableProfiles(self):
         return [
             'brasil.gov.vcge:uninstall',
-            'brasil.gov.vcge.upgrades.v2000:default'
+            'brasil.gov.vcge.upgrades.v2000:default',
+            'brasil.gov.vcge.upgrades.v2001:default',
         ]

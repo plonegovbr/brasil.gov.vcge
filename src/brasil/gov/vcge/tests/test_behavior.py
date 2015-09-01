@@ -35,17 +35,17 @@ class TestVCGE(unittest.TestCase):
         dummy = Dummy()
         return VCGE(dummy)
 
-    def test_skos_setter(self):
+    def test_vcge_setter(self):
         b = self._makeOne()
         token = 'http://vocab.e.gov.br/id/governo#cultura'
-        b.skos = token
-        self.assertEqual(token, b.context.skos)
+        b.vcge = token
+        self.assertEqual(token, b.context.vcge)
 
-    def test_skos_getter(self):
+    def test_vcge_getter(self):
         b = self._makeOne()
         token = 'http://vocab.e.gov.br/id/governo#cultura'
-        b.context.skos = token
-        self.assertEqual(token, b.skos)
+        b.context.vcge = token
+        self.assertEqual(token, b.vcge)
 
 
 class TestBehavior(unittest.TestCase):
@@ -63,7 +63,7 @@ class TestBehavior(unittest.TestCase):
         portal = self.portal
         oId = portal.invokeFactory('folder', 'content')
         o = IVCGE(portal[oId])
-        o.skos = [token, ]
+        o.vcge = [token, ]
         self.content = portal[oId]
 
     def setUp(self):
@@ -86,7 +86,7 @@ class TestBehavior(unittest.TestCase):
 
     def test_content_information(self):
         content = self.content
-        self.assertEquals(content.skos, [self.token, ])
+        self.assertEquals(content.vcge, [self.token, ])
 
 
 class TestViewlet(unittest.TestCase):
@@ -103,7 +103,7 @@ class TestViewlet(unittest.TestCase):
         portal = self.portal
         oId = portal.invokeFactory('folder', 'content')
         o = portal[oId]
-        o.skos = [token, ]
+        o.vcge = [token, ]
         self.content = o
 
     def setUp(self):
@@ -126,21 +126,21 @@ class TestViewlet(unittest.TestCase):
         rel = viewlet.rel()
         self.assertEquals(rel, u'dc:subject foaf:primaryTopic')
 
-    def test_skos(self):
+    def test_vcge(self):
         content = self.content
         viewlet = VCGEViewlet(content, self.request, None, None)
         viewlet.update()
-        skos = viewlet.skos()
-        self.assertEquals(len(skos), 1)
-        term = skos[0]
+        vcge = viewlet.vcge()
+        self.assertEquals(len(vcge), 1)
+        term = vcge[0]
         self.assertEquals(term.get('title'), u'Cultura')
 
-    def test_skos_not_existent(self):
+    def test_vcge_not_existent(self):
         ''' Testa o que acontece quando nao temos o Extender
             aplicado a um tipo de conteudo (neste caso o proprio portal)
         '''
         portal = self.portal
         viewlet = VCGEViewlet(portal, self.request, None, None)
         viewlet.update()
-        skos = viewlet.skos()
-        self.assertEquals(len(skos), 0)
+        vcge = viewlet.vcge()
+        self.assertEquals(len(vcge), 0)

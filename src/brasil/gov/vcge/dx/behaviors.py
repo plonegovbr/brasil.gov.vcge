@@ -17,22 +17,22 @@ class IVCGE(model.Schema):
     # categorization fieldset
     model.fieldset(
         'categorization',
-        fields=['skos'],
+        fields=['vcge'],
     )
 
-    form.widget(skos=SkosFieldWidget)
-    skos = schema.Tuple(
+    form.widget(vcge=SkosFieldWidget)
+    vcge = schema.Tuple(
         title=_(u'VCGE'),
         description=_(u'vcge_desc'),
         required=False,
         value_type=schema.Choice(vocabulary='brasil.gov.vcge'),
     )
 
-    form.order_after(skos='subjects')
+    form.order_after(vcge='subjects')
 
-    form.omitted('skos')
-    form.no_omit(IEditForm, 'skos')
-    form.no_omit(IAddForm, 'skos')
+    form.omitted('vcge')
+    form.no_omit(IEditForm, 'vcge')
+    form.no_omit(IAddForm, 'vcge')
 
 
 # Mark these interfaces as form field providers
@@ -44,9 +44,9 @@ class VCGE(object):
     def __init__(self, context):
         self.context = context
 
-    def _get_skos(self):
-        return self.context.skos
+    def _get_vcge(self):
+        return self.context.vcge
 
-    def _set_skos(self, value):
-        self.context.skos = value
-    skos = property(_get_skos, _set_skos)
+    def _set_vcge(self, value):
+        self.context.vcge = value
+    vcge = property(_get_vcge, _set_vcge)

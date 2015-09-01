@@ -6,23 +6,23 @@ def vcge_available(obj):
     """ Valida se o objeto tem o atributo de
         armazenamento do VCGE
     """
-    return hasattr(aq_base(obj), 'skos')
+    return hasattr(aq_base(obj), 'vcge')
 
 
 def vcge_for_object(obj):
     """ Retorna valores armazenados no atributo
         VCGE de um objeto
     """
-    skos = []
-    if hasattr(aq_base(obj), 'skos'):
-        skos = obj.skos
-    return skos
+    vcge = []
+    if hasattr(aq_base(obj), 'vcge'):
+        vcge = obj.vcge
+    return vcge
 
 
-def set_vcge(obj, skos):
+def set_vcge(obj, vcge):
     """ Armazena valores no atributo
         VCGE de um objeto
     """
-    if hasattr(aq_base(obj), 'skos'):
-        obj.skos = skos
+    if hasattr(aq_base(obj), 'vcge'):
+        obj.vcge = vcge
     return True

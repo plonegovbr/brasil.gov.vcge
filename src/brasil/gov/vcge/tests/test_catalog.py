@@ -30,7 +30,7 @@ class TestCatalogSetup(BaseTestCase):
     """ Garante que temos o indice e a coluna criados"""
 
     def test_index(self):
-        self.assertTrue('skos' in self.ct.Indexes)
+        self.assertTrue('vcge' in self.ct.Indexes)
 
     def test_column(self):
-        self.assertTrue('skos' in self.ct.schema())
+        self.assertTrue('vcge' in self.ct.schema())

@@ -89,6 +89,16 @@ class TestUpgrade(BaseTestCase):
                 and (step[0]['source'] == ('1000',))]
         self.assertEqual(len(step), 1)
 
+    def test_to2001_available(self):
+
+        upgradeSteps = listUpgradeSteps(self.st,
+                                        self.profile,
+                                        '2000')
+        step = [step for step in upgradeSteps
+                if (step[0]['dest'] == ('2001',))
+                and (step[0]['source'] == ('2000',))]
+        self.assertEqual(len(step), 1)
+
 
 class TestUninstall(BaseTestCase):
     """ensure product is properly uninstalled"""

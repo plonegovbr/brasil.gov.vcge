@@ -35,7 +35,7 @@ class IVCGEAction(Interface):
                                         u"Selecionar esta opção ignora "
                                         u"os termos do campo a seguir."))
 
-    skos = Set(title=_(u'VCGE'),
+    vcge = Set(title=_(u'VCGE'),
                description=_(u'Termos a serem aplicados ao conteúdo.'),
                required=False,
                value_type=Choice(vocabulary=VOCAB))
@@ -48,17 +48,17 @@ class VCGEAction(SimpleItem):
 
     element = 'brasil.gov.vcge.actions.VCGE'
     same_as_parent = False
-    skos = []
+    vcge = []
 
     @property
     def summary(self):
         same_as_parent = self.same_as_parent
-        skos = self.skos
+        vcge = self.vcge
         if same_as_parent:
             msg = _(u"Aplica termos da pasta no conteúdo.")
         else:
-            msg = _(u"Aplica os termos ${skos}",
-                    mapping=dict(skos=", ".join(skos)))
+            msg = _(u"Aplica os termos ${vcge}",
+                    mapping=dict(vcge=", ".join(vcge)))
         return msg
 
 
@@ -79,15 +79,15 @@ class VCGEActionExecutor(object):
         '''
         obj = self.event.object
         same_as_parent = self.element.same_as_parent
-        skos = self.element.skos
+        vcge = self.element.vcge
         if not (utils.vcge_available(obj)):
             return False
         if same_as_parent:
             parent = aq_parent(obj)
             if not (utils.vcge_available(parent)):
                 return False
-            skos = utils.vcge_for_object(parent)
-        return utils.set_vcge(obj, skos)
+            vcge = utils.vcge_for_object(parent)
+        return utils.set_vcge(obj, vcge)
 
 
 class VCGEAddForm(AddForm):

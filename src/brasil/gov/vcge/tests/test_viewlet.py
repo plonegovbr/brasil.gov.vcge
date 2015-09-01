@@ -24,7 +24,7 @@ class TestViewlet(unittest.TestCase):
         portal = self.portal
         oId = portal.invokeFactory('Document', 'doc')
         o = portal[oId]
-        o.Schema().getField('skos').set(o, [token, ])
+        o.Schema().getField('vcge').set(o, [token, ])
         self.content = o
 
     def setUp(self):
@@ -42,21 +42,21 @@ class TestViewlet(unittest.TestCase):
         rel = viewlet.rel()
         self.assertEquals(rel, u'dc:subject foaf:primaryTopic')
 
-    def test_skos(self):
+    def test_vcge(self):
         content = self.content
         viewlet = VCGEViewlet(content, self.request, None, None)
         viewlet.update()
-        skos = viewlet.skos()
-        self.assertEquals(len(skos), 1)
-        term = skos[0]
+        vcge = viewlet.vcge()
+        self.assertEquals(len(vcge), 1)
+        term = vcge[0]
         self.assertEquals(term.get('title'), u'Cultura')
 
-    def test_skos_not_existent(self):
+    def test_vcge_not_existent(self):
         ''' Testa o que acontece quando nao temos o Extender
             aplicado a um tipo de conteudo (neste caso o proprio portal)
         '''
         portal = self.portal
         viewlet = VCGEViewlet(portal, self.request, None, None)
         viewlet.update()
-        skos = viewlet.skos()
-        self.assertEquals(len(skos), 0)
+        vcge = viewlet.vcge()
+        self.assertEquals(len(vcge), 0)

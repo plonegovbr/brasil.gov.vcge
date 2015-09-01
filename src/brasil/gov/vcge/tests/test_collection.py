@@ -24,7 +24,7 @@ class BaseTestCase(unittest.TestCase):
         self.portal = portal
         self.registry = getattr(self.portal, 'portal_registry')
         self.ct = getattr(self.portal, 'portal_catalog')
-        self.prefix = 'plone.app.querystring.field.skos'
+        self.prefix = 'plone.app.querystring.field.vcge'
         self.setUpUser()
 
 

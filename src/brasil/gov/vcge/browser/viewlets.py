@@ -22,20 +22,20 @@ class VCGEViewlet(ViewletBase):
         ps = self.context.restrictedTraverse('@@plone_portal_state')
         self.nav_root_url = ps.navigation_root().absolute_url()
 
-    def skos(self):
+    def vcge(self):
         ''' Retorna lista de itens selecionados neste conteudo
         '''
         context = aq_base(aq_inner(self.context))
         uris = []
-        if hasattr(context, 'skos'):
-            uris = self.context.skos or []
+        if hasattr(context, 'vcge'):
+            uris = self.context.vcge or []
         name = 'brasil.gov.vcge'
         util = queryUtility(IVocabularyFactory, name)
         vcge = util(self.context)
         skos = []
         for uri in uris:
             title = vcge.by_token[uri].title
-            params = urlencode({'skos:list': uri})
+            params = urlencode({'vcge:list': uri})
             skos.append({'id': uri,
                          'title': title,
                          'url': '%s/@@search?%s' % (self.nav_root_url,

@@ -92,8 +92,8 @@ class SkosWidget(widget.SequenceWidget):
     @property
     def existing(self):
         value = None
-        if base_hasattr(self.context, 'skos'):
-            value = getattr(self.context, 'skos')
+        if base_hasattr(self.context, 'vcge'):
+            value = getattr(self.context, 'vcge')
         if not value:
             value = []
         terms = self.vocab()
