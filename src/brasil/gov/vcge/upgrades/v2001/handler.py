@@ -2,6 +2,7 @@
 from brasil.gov.vcge.config import PROJECTNAME
 from plone.app.upgrade.utils import loadMigrationProfile
 from plone import api
+from Products.CMFCore.interfaces import IFolderish
 
 
 import logging
@@ -9,8 +10,6 @@ import logging
 
 logger = logging.getLogger(PROJECTNAME)
 
-
-from Products.CMFCore.interfaces import IFolderish
 
 def recurse_all_content(portal):
     """Atualizamos o metadado skos para vcge
@@ -34,6 +33,7 @@ def recurse_all_content(portal):
     recurse(portal)
     logger.info('Atualizacao do skos_VCGE completa')
 
+
 def apply_profile(context):
     """Atualiza perfil para versao 2001."""
     profile = 'profile-brasil.gov.vcge.upgrades.v2001:default'
@@ -41,5 +41,4 @@ def apply_profile(context):
     recurse_all_content(api.portal.get())
     ct = api.portal.get_tool('portal_catalog')
     ct.clearFindAndRebuild()
-    
     logger.info('Atualizado para versao 2001')
