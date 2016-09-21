@@ -72,6 +72,7 @@ setup(name='brasil.gov.vcge',
           ],
           'test': [
               'interlude',
+              'plone.api',
               'plone.app.testing',
               'unittest2',
           ]},

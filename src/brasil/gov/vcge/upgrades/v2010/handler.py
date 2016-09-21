@@ -6,7 +6,7 @@ from plone import api
 from Products.CMFCore.interfaces import IFolderish
 from brasil.gov.vcge import config
 
-
+import shutil
 import os
 import rdflib
 import logging
@@ -24,7 +24,7 @@ def apply_profile(context):
     old_file = os.path.join(path, 'data', config.DEFAULT_FILE)
     os.remove(old_file)
     path = os.path.dirname(__file__)
-    os.rename(os.path.join(path, 'data', 'vcge2.0.3.n3'), old_file)
+    shutil.copy2(os.path.join(path, 'data', 'vcge2.0.3.n3'), old_file)
     ct = api.portal.get_tool('portal_catalog')
     ct.clearFindAndRebuild()
     logger.info('Atualizado para versao 2010')

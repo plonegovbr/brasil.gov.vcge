@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from brasil.gov.vcge.config import PROJECTNAME
 from brasil.gov.vcge.testing import HAS_DEXTERITY
+from brasil.gov.vcge.testing import VCGE_SKOS
 from brasil.gov.vcge.testing import INTEGRATION_TESTING
 from plone.app.testing import login
 from plone.app.testing import setRoles
@@ -20,6 +21,7 @@ class BaseTestCase(unittest.TestCase):
     """base test case to be used by other tests"""
 
     layer = INTEGRATION_TESTING
+    profile = 'brasil.gov.vcge:default'
 
     def setUpUser(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer'])
@@ -33,6 +35,39 @@ class BaseTestCase(unittest.TestCase):
         self.wt = getattr(self.portal, 'portal_workflow')
         self.st = getattr(self.portal, 'portal_setup')
         self.setUpUser()
+
+    def list_upgrades(self, source, destination):
+        upgradeSteps = listUpgradeSteps(self.st,
+                                        self.profile,
+                                        source)
+        print upgradeSteps
+        if source == '0':
+            source = (source, '0')
+        else:
+            source = (source, )
+
+        step = [step for step in upgradeSteps
+                if (step[0]['dest'] == (destination,))
+                and (step[0]['source'] == source)]
+        return step
+
+    def execute_upgrade(self, source, destination):
+        # Setamos o profile para versao source
+        self.st.setLastVersionForProfile(self.profile, source)
+        # Pegamos os upgrade steps
+        upgradeSteps = listUpgradeSteps(self.st,
+                                        self.profile,
+                                        source)
+        if source == '0':
+            source = (source, '0')
+        else:
+            source = (source, )
+        steps = [step for step in upgradeSteps
+                 if (step[0]['dest'] == (destination,))
+                 and (step[0]['source'] == source)][0]
+        # Os executamos
+        for step in steps:
+            step['step'].doStep(self.st)
 
 
 class TestInstall(BaseTestCase):
@@ -62,6 +97,20 @@ class TestInstall(BaseTestCase):
         for css in STYLESHEETS:
             self.assertTrue(css in portal_css.getResourceIds(),
                             '%s not installed' % css)
+
+
+class TestMigrateVCGE1to2(BaseTestCase):
+
+    layer = INTEGRATION_TESTING
+
+    def test_migrate_vcge_1_to_2(self):
+        obj1 = self.portal['my-news-item']
+        self.assertEqual(VCGE_SKOS, obj1.skos)
+
+        # VCGE2
+        token_replaces = ['http://vocab.e.gov.br/id/governo#administracao']
+        self.execute_upgrade(u'2000', u'2010')
+        self.assertEqual(token_replaces, obj1.skos)
 
 
 class TestUpgrade(BaseTestCase):
