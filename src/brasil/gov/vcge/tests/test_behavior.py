@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+from brasil.gov.vcge.browser.viewlets import VCGEViewlet
 from brasil.gov.vcge.dx.behaviors import IVCGE
 from brasil.gov.vcge.dx.behaviors import VCGE
 from brasil.gov.vcge.dx.interfaces import IVCGEDx
-from brasil.gov.vcge.browser.viewlets import VCGEViewlet
 from brasil.gov.vcge.testing import HAS_DEXTERITY
 from brasil.gov.vcge.testing import INTEGRATION_TESTING
 from plone.app.testing import login
