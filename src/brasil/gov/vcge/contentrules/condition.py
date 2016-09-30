@@ -16,7 +16,7 @@ from zope.schema import Set
 
 VOCAB = 'brasil.gov.vcge'
 
-FORM_NAME = _(u"Configurar a condição")
+FORM_NAME = _(u'Configurar a condição')
 
 FORM_DESC = _(u'Uma condição VGCE executa uma regra de conteúdo apenas se '
               u'um dos termos selecionados estiver presente. Caso nenhum termo '
@@ -43,16 +43,16 @@ class VCGECondition(SimpleItem):
     implements(IVCGECondition, IRuleElementData)
 
     skos = []
-    element = "brasil.gov.vcge.conditions.VCGE"
+    element = 'brasil.gov.vcge.conditions.VCGE'
 
     @property
     def summary(self):
         skos = self.skos
         if not skos:
-            msg = _(u"Nenhum termo selecionado")
+            msg = _(u'Nenhum termo selecionado')
         else:
-            msg = _(u"VCGE contém ${skos}",
-                    mapping=dict(skos=" or ".join(skos)))
+            msg = _(u'VCGE contém ${skos}',
+                    mapping=dict(skos=' or '.join(skos)))
         return msg
 
 
@@ -102,6 +102,6 @@ class VCGEEditForm(EditForm):
         de VCGE
     """
     form_fields = form.FormFields(IVCGECondition)
-    label = _(u"Editar condição VCGE")
+    label = _(u'Editar condição VCGE')
     description = FORM_DESC
     form_name = FORM_NAME

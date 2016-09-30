@@ -17,7 +17,7 @@ class ISkosWidget(interfaces.ISequenceWidget):
 
 class SkosWidget(widget.SequenceWidget):
     zope.interface.implementsOnly(ISkosWidget)
-    klass = u"token-input-widget"
+    klass = u'token-input-widget'
     display_template = ViewPageTemplateFile('skos_display.pt')
     input_template = ViewPageTemplateFile('skos_input.pt')
 
@@ -27,7 +27,7 @@ class SkosWidget(widget.SequenceWidget):
     mustMatch = False
     matchContains = True
     formatItem = 'function(row, idx, count, value) { return row[1]; }'
-    formatResult = 'function(row, idx, count) { return ""; }'
+    formatResult = 'function(row, idx, count) { return ''; }'
 
     js_template = """\
     (function($) {
@@ -164,7 +164,7 @@ class AutocompleteSearch(BrowserView):
                    if query in i.title.lower()]
 
         results = sorted(results, key=lambda pair: len(pair[1]))
-        return '\n'.join(["%s|%s" % (value, title)
+        return '\n'.join(['%s|%s' % (value, title)
                           for value, title in results])
 
 
