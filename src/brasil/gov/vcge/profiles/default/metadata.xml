@@ -2,6 +2,6 @@
 <metadata>
   <version>2000</version>
   <dependencies>
-  	    <dependency>profile-raptus.autocompletewidget:default</dependency>
+          <dependency>profile-raptus.autocompletewidget:default</dependency>
   </dependencies>
 </metadata>

@@ -3,13 +3,13 @@
       tal:omit-tag="">
 <script type="text/javascript" tal:content="structure view/js"></script>
 <tal:values tal:repeat="item view/existing">
-	<label class='plain'>
-		<input type='checkbox'
-			  tal:attributes="value item/value"
-			  name='form.widgets.IVCGE.skos' 
-			  checked='checked' />
-			  <span tal:replace="item/title" />
-	 </label><br />
+    <label class='plain'>
+        <input type='checkbox'
+              tal:attributes="value item/value"
+              name='form.widgets.IVCGE.skos' 
+              checked='checked' />
+              <span tal:replace="item/title" />
+     </label><br />
 </tal:values>
 <textarea
      tal:attributes="id view/id;
