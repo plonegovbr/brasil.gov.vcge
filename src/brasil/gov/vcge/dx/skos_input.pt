@@ -6,7 +6,7 @@
     <label class='plain'>
         <input type='checkbox'
               tal:attributes="value item/value"
-              name='form.widgets.IVCGE.skos' 
+              name='form.widgets.IVCGE.skos'
               checked='checked' />
               <span tal:replace="item/title" />
      </label><br />

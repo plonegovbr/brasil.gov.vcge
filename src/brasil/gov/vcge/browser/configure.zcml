@@ -3,12 +3,12 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="brasil.gov.vcge">
 
-  <!-- Registra a pasta resources com o nome de 
+  <!-- Registra a pasta resources com o nome de
        ++resources+brasil.gov.vcge/ dentro do Plone
    -->
   <browser:resourceDirectory name="brasil.gov.vcge"
                              directory="resources" />
-    
+
   <browser:viewlet
       name="brasil.gov.vcge"
       manager="plone.app.layout.viewlets.interfaces.IBelowContent"
