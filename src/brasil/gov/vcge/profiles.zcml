@@ -4,22 +4,22 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="brasil.gov.vcge">
 
-	<gs:registerProfile
-	     name="default"
-	     title=".gov.br: Vocabulário Controlado do Governo Eletrônico"
-	     directory="profiles/default"
-	     description="Integração do VCGE ao Plone"
-	     provides="Products.GenericSetup.interfaces.EXTENSION"
-	     i18n:attributes="title; description"
-	     />
+    <gs:registerProfile
+         name="default"
+         title=".gov.br: Vocabulário Controlado do Governo Eletrônico"
+         directory="profiles/default"
+         description="Integração do VCGE ao Plone"
+         provides="Products.GenericSetup.interfaces.EXTENSION"
+         i18n:attributes="title; description"
+         />
 
-	<gs:registerProfile
-	     name="uninstall"
-	     title=".gov.br: Vocabulário Controlado do Governo Eletrônico (Remover)"
-	     directory="profiles/uninstall"
-	     description="Remove a integração do VCGE ao Plone"
-	     provides="Products.GenericSetup.interfaces.EXTENSION"
-	     i18n:attributes="title; description"
-	     />
+    <gs:registerProfile
+         name="uninstall"
+         title=".gov.br: Vocabulário Controlado do Governo Eletrônico (Remover)"
+         directory="profiles/uninstall"
+         description="Remove a integração do VCGE ao Plone"
+         provides="Products.GenericSetup.interfaces.EXTENSION"
+         i18n:attributes="title; description"
+         />
 
 </configure>

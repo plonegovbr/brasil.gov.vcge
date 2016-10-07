@@ -3,7 +3,7 @@ from Products.CMFPlone import interfaces as plone_interfaces
 from Products.CMFQuickInstallerTool import interfaces as qi_interfaces
 from zope.interface import implements
 
-PROJECTNAME = "brasil.gov.vcge"
+PROJECTNAME = 'brasil.gov.vcge'
 
 DEFAULT_FILE = 'vcge.n3'
 DEFAULT_FORMAT = 'n3'
