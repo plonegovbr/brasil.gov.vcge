@@ -7,9 +7,9 @@ from plone.app.contentrules.browser.formhelper import AddForm
 from plone.app.contentrules.browser.formhelper import EditForm
 from plone.contentrules.rule.interfaces import IExecutable
 from plone.contentrules.rule.interfaces import IRuleElementData
-from zope.component import adapts
+from zope.component import adapter
 from zope.formlib import form
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema import Bool
 from zope.schema import Choice
@@ -41,10 +41,10 @@ class IVCGEAction(Interface):
                value_type=Choice(vocabulary=VOCAB))
 
 
+@implementer(IVCGEAction, IRuleElementData)
 class VCGEAction(SimpleItem):
     """ A implementacao persistente para a acao VCGE
     """
-    implements(IVCGEAction, IRuleElementData)
 
     element = 'brasil.gov.vcge.actions.VCGE'
     same_as_parent = False
@@ -62,12 +62,12 @@ class VCGEAction(SimpleItem):
         return msg
 
 
+@adapter(Interface, IVCGEAction, Interface)
+@implementer(IExecutable)
 class VCGEActionExecutor(object):
     """ O executor para esta acao.
         Este codigo esta registrado como adaptador no configure.zcml
     """
-    implements(IExecutable)
-    adapts(Interface, IVCGEAction, Interface)
 
     def __init__(self, context, element, event):
         self.context = context

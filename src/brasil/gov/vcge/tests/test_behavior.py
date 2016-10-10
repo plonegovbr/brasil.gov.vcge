@@ -5,6 +5,7 @@ from brasil.gov.vcge.dx.behaviors import VCGE
 from brasil.gov.vcge.dx.interfaces import IVCGEDx
 from brasil.gov.vcge.testing import HAS_DEXTERITY
 from brasil.gov.vcge.testing import INTEGRATION_TESTING
+from plone import api
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -61,10 +62,14 @@ class TestBehavior(unittest.TestCase):
         token = 'http://vocab.e.gov.br/id/governo#cultura'
         self.token = token
         portal = self.portal
-        oId = portal.invokeFactory('folder', 'content')
-        o = IVCGE(portal[oId])
+        o = api.content.create(
+            type='Folder',
+            container=portal,
+            id='content'
+        )
+        o = IVCGE(o)
         o.skos = [token, ]
-        self.content = portal[oId]
+        self.content = o
 
     def setUp(self):
         if not HAS_DEXTERITY:
@@ -76,7 +81,11 @@ class TestBehavior(unittest.TestCase):
         self.portal = portal
         self.fti = add_folder_type(self.portal)
         self.setUpUser()
-        self.portal.invokeFactory('folder', 'folder')
+        api.content.create(
+            type='Folder',
+            container=self.portal,
+            id='folder'
+        )
         self.setUpContent()
 
     def test_behavior_applied(self):
@@ -86,7 +95,7 @@ class TestBehavior(unittest.TestCase):
 
     def test_content_information(self):
         content = self.content
-        self.assertEquals(content.skos, [self.token, ])
+        self.assertEqual(content.skos, [self.token, ])
 
 
 class TestViewlet(unittest.TestCase):
@@ -101,8 +110,11 @@ class TestViewlet(unittest.TestCase):
     def setUpContent(self):
         token = 'http://vocab.e.gov.br/id/governo#cultura'
         portal = self.portal
-        oId = portal.invokeFactory('folder', 'content')
-        o = portal[oId]
+        o = api.content.create(
+            type='Folder',
+            container=portal,
+            id='content'
+        )
         o.skos = [token, ]
         self.content = o
 
@@ -116,7 +128,11 @@ class TestViewlet(unittest.TestCase):
         self.portal = portal
         self.fti = add_folder_type(self.portal)
         self.setUpUser()
-        self.portal.invokeFactory('folder', 'folder')
+        api.content.create(
+            type='Folder',
+            container=self.portal,
+            id='folder'
+        )
         self.setUpContent()
 
     def test_rel(self):
@@ -124,16 +140,16 @@ class TestViewlet(unittest.TestCase):
         viewlet = VCGEViewlet(content, self.request, None, None)
         viewlet.update()
         rel = viewlet.rel()
-        self.assertEquals(rel, u'dc:subject foaf:primaryTopic')
+        self.assertEqual(rel, u'dc:subject foaf:primaryTopic')
 
     def test_skos(self):
         content = self.content
         viewlet = VCGEViewlet(content, self.request, None, None)
         viewlet.update()
         skos = viewlet.skos()
-        self.assertEquals(len(skos), 1)
+        self.assertEqual(len(skos), 1)
         term = skos[0]
-        self.assertEquals(term.get('title'), u'Cultura')
+        self.assertEqual(term.get('title'), u'Cultura')
 
     def test_skos_not_existent(self):
         ''' Testa o que acontece quando nao temos o Extender
@@ -143,4 +159,4 @@ class TestViewlet(unittest.TestCase):
         viewlet = VCGEViewlet(portal, self.request, None, None)
         viewlet.update()
         skos = viewlet.skos()
-        self.assertEquals(len(skos), 0)
+        self.assertEqual(len(skos), 0)
