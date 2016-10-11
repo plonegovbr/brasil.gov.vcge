@@ -14,12 +14,14 @@ from zope.site.hooks import setSite
 
 import unittest2 as unittest
 
+DEXTERITY_FTI_FOLDER = 'folder'
+
 
 def add_folder_type(portal):
     from plone.dexterity.fti import DexterityFTI
 
-    fti = DexterityFTI('folder')
-    portal.portal_types._setObject('folder', fti)
+    fti = DexterityFTI(DEXTERITY_FTI_FOLDER)
+    portal.portal_types._setObject(DEXTERITY_FTI_FOLDER, fti)
     fti.klass = 'plone.dexterity.content.Container'
     fti.filter_content_types = False
     fti.behaviors = (
@@ -63,12 +65,12 @@ class TestBehavior(unittest.TestCase):
         self.token = token
         portal = self.portal
         o = api.content.create(
-            type='Folder',
+            type=DEXTERITY_FTI_FOLDER,
             container=portal,
             id='content'
         )
-        o = IVCGE(o)
-        o.skos = [token, ]
+        i = IVCGE(o)
+        i.skos = [token, ]
         self.content = o
 
     def setUp(self):
@@ -82,7 +84,7 @@ class TestBehavior(unittest.TestCase):
         self.fti = add_folder_type(self.portal)
         self.setUpUser()
         api.content.create(
-            type='Folder',
+            type=DEXTERITY_FTI_FOLDER,
             container=self.portal,
             id='folder'
         )
@@ -111,7 +113,7 @@ class TestViewlet(unittest.TestCase):
         token = 'http://vocab.e.gov.br/id/governo#cultura'
         portal = self.portal
         o = api.content.create(
-            type='Folder',
+            type=DEXTERITY_FTI_FOLDER,
             container=portal,
             id='content'
         )
@@ -129,7 +131,7 @@ class TestViewlet(unittest.TestCase):
         self.fti = add_folder_type(self.portal)
         self.setUpUser()
         api.content.create(
-            type='Folder',
+            type=DEXTERITY_FTI_FOLDER,
             container=self.portal,
             id='folder'
         )
