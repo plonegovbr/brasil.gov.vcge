@@ -7,9 +7,9 @@ from plone.app.contentrules.browser.formhelper import AddForm
 from plone.app.contentrules.browser.formhelper import EditForm
 from plone.contentrules.rule.interfaces import IExecutable
 from plone.contentrules.rule.interfaces import IRuleElementData
-from zope.component import adapts
+from zope.component import adapter
 from zope.formlib import form
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema import Choice
 from zope.schema import Set
@@ -37,10 +37,10 @@ class IVCGECondition(Interface):
                value_type=Choice(vocabulary=VOCAB))
 
 
+@implementer(IVCGECondition, IRuleElementData)
 class VCGECondition(SimpleItem):
     """ A implementacao persistente para a condicao VCGE
     """
-    implements(IVCGECondition, IRuleElementData)
 
     skos = []
     element = 'brasil.gov.vcge.conditions.VCGE'
@@ -56,12 +56,12 @@ class VCGECondition(SimpleItem):
         return msg
 
 
+@adapter(Interface, IVCGECondition, Interface)
+@implementer(IExecutable)
 class VCGEConditionExecutor(object):
     """ O executor para esta condicao.
         Este codigo esta registrado como adaptador no configure.zcml
     """
-    implements(IExecutable)
-    adapts(Interface, IVCGECondition, Interface)
 
     def __init__(self, context, element, event):
         self.context = context

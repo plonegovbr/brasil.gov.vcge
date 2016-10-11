@@ -42,6 +42,7 @@ setup(name='brasil.gov.vcge',
       zip_safe=False,
       install_requires=[
           'Plone >=4.2',
+          'plone.api',
           'collective.z3cform.widgets',
           'raptus.autocompletewidget',
           'rdflib',

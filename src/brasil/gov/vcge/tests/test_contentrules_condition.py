@@ -2,6 +2,7 @@
 from brasil.gov.vcge.contentrules.condition import VCGECondition
 from brasil.gov.vcge.contentrules.condition import VCGEEditForm
 from brasil.gov.vcge.testing import INTEGRATION_TESTING
+from plone import api
 from plone.app.contentrules.rule import Rule
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -12,13 +13,13 @@ from Products.CMFCore.PortalContent import PortalContent
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component.interfaces import IObjectEvent
-from zope.interface import implements
+from zope.interface import implementer
 
 import unittest2 as unittest
 
 
+@implementer(IObjectEvent)
 class DummyEvent(object):
-    implements(IObjectEvent)
 
     def __init__(self, object):
         self.object = object
@@ -33,11 +34,19 @@ class TestVCGECondition(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Folder', 'folder')
-        self.folder = self.portal['folder']
+
+        self.folder = api.content.create(
+            type='Folder',
+            container=self.portal,
+            id='folder'
+        )
         self.folder.skos = [self.term, ]
-        sub_folder_id = self.folder.invokeFactory('Folder', 'sub_folder')
-        self.sub_folder = self.folder[sub_folder_id]
+
+        self.sub_folder = api.content.create(
+            type='Folder',
+            container=self.folder,
+            id='sub_folder'
+        )
         self.sub_folder.skos = ['http://vocab.e.gov.br/2011/03/vcge#governo', ]
         o = PortalContent('cmf', 'CMF Content', '', '', '')
         self.folder._setObject('cmf', o, suppress_events=True)
@@ -45,11 +54,10 @@ class TestVCGECondition(unittest.TestCase):
     def test_registered(self):
         element = getUtility(IRuleCondition,
                              name='brasil.gov.vcge.conditions.VCGE')
-        self.assertEquals('brasil.gov.vcge.conditions.VCGE',
-                          element.addview)
-        self.assertEquals('edit', element.editview)
-        self.assertEquals(None, element.for_)
-        self.assertEquals(IObjectEvent, element.event)
+        self.assertEqual('brasil.gov.vcge.conditions.VCGE', element.addview)
+        self.assertEqual('edit', element.editview)
+        self.assertEqual(None, element.for_)
+        self.assertEqual(IObjectEvent, element.event)
 
     def test_invoke_add_view(self):
         element = getUtility(IRuleCondition,
@@ -66,8 +74,8 @@ class TestVCGECondition(unittest.TestCase):
         addview.createAndAdd(data={'skos': [self.term, ]})
 
         e = rule.conditions[0]
-        self.failUnless(isinstance(e, VCGECondition))
-        self.assertEquals([self.term, ], e.skos)
+        self.assertTrue(isinstance(e, VCGECondition))
+        self.assertEqual([self.term, ], e.skos)
 
     def test_invoke_edit_view(self):
         element = getUtility(IRuleCondition,
@@ -75,7 +83,7 @@ class TestVCGECondition(unittest.TestCase):
         e = VCGECondition()
         editview = getMultiAdapter((e, self.folder.REQUEST),
                                    name=element.editview)
-        self.failUnless(isinstance(editview, VCGEEditForm))
+        self.assertTrue(isinstance(editview, VCGEEditForm))
 
     def test_summary_empty_vcge(self):
         e = VCGECondition()
@@ -98,11 +106,11 @@ class TestVCGECondition(unittest.TestCase):
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
                              IExecutable)
-        self.assertEquals(True, ex())
+        self.assertEqual(True, ex())
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.sub_folder)),
                              IExecutable)
-        self.assertEquals(False, ex())
+        self.assertEqual(False, ex())
 
     def test_execute_empty(self):
         e = VCGECondition()
@@ -110,17 +118,17 @@ class TestVCGECondition(unittest.TestCase):
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.folder)),
                              IExecutable)
-        self.assertEquals(False, ex())
+        self.assertEqual(False, ex())
 
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.sub_folder)),
                              IExecutable)
-        self.assertEquals(False, ex())
+        self.assertEqual(False, ex())
 
         # Empty VCGE field
         self.sub_folder.skos = []
         ex = getMultiAdapter((self.portal, e, DummyEvent(self.sub_folder)),
                              IExecutable)
-        self.assertEquals(True, ex())
+        self.assertEqual(True, ex())
 
     def test_execute_object_without_vcge(self):
         e = VCGECondition()
@@ -129,4 +137,4 @@ class TestVCGECondition(unittest.TestCase):
         ex = getMultiAdapter((self.folder, e,
                               DummyEvent(self.folder['cmf'])),
                              IExecutable)
-        self.assertEquals(False, ex())
+        self.assertEqual(False, ex())

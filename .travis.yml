@@ -4,10 +4,24 @@ sudo: false
 cache:
   directories:
   - eggs
+  - parts/node
 env:
-  - PLONE_VERSION=4.2
-  - PLONE_VERSION=4.3
+  matrix:
+    - PLONE_VERSION=4.2
+    # Nos demais pacotes plonegovbr, como não testo as versões além do Plone
+    # 4.3 (ou seja, por padrão testo sõ a 4.3), não uso a variável
+    # PLONE_VERSION, apenas a MASTER e a PENDING_RELEASE.
+    - PLONE_VERSION=4.3 MASTER=true
+    - PLONE_VERSION=4.3 PENDING_RELEASE=true
+matrix:
+  allow_failures:
+    - env: PLONE_VERSION=4.2
+    - env: PLONE_VERSION=4.3 MASTER=true
+  fast_finish: true
 install:
+  # Remova a linha que aponta para o versions do novo release, por padrão 4.3,
+  # se o job for o 4.2 ou o que tem que pegar do master.
+  - test "$MASTER" -o "$PLONE_VERSION" = 4.2 && sed -ie '/https:\/\/raw\.githubusercontent\.com\/plonegovbr\/portal\.buildout\/master\/buildout\.d\/versions\.cfg/d' buildout.cfg || true
   - sed -ie "s#test-4.3#test-$PLONE_VERSION#" buildout.cfg
   - python bootstrap.py
   - bin/buildout annotate
@@ -20,6 +34,8 @@ script:
   - bin/code-analysis
   - bin/test
 after_success:
+  # vcge, no momento, não possui testes do tipo "Robots", ao contrário dos
+  # demais pacotes em plonegovbr.
   - bin/createcoverage -t "--layer=!Robot"
   - pip install coveralls
   - coveralls

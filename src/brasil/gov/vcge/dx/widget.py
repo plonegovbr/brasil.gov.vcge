@@ -26,56 +26,72 @@ class SkosWidget(widget.SequenceWidget):
     maxResults = 10
     mustMatch = False
     matchContains = True
+
+    # Não é necessário dar "escape" em "{" e "}" aqui uma vez que essas variáveis
+    # são usadas de forma literal como parâmetro do format: só precisamos dar
+    # "escape" quando é a string que será aplicada o format (como o js_template)
     formatItem = 'function(row, idx, count, value) { return row[1]; }'
     formatResult = 'function(row, idx, count) { return ''; }'
+    #
 
+    # Lembre-se de que para conseguir usar { e }  de forma literal nas aberturas
+    # e fechamento de funções do js, você precisa usar {{ e }} respectivamente.
+    # https://docs.python.org/3/library/string.html#formatstrings
     js_template = """\
-    (function($) {
-        $().ready(function() {
-            $('#formfield-form-widgets-IVCGE-skos #%(id)s').each(function() {
-                $('#formfield-form-widgets-IVCGE-skos').append('<input name="%(name)s-input" type="text" id="%(id)s-input" />');
+    (function($) {{
+        $().ready(function() {{
+            $('#formfield-form-widgets-IVCGE-skos #{id}').each(function() {{
+                $('#formfield-form-widgets-IVCGE-skos').append('<input name="{name}-input" type="text" id="{id}-input" />');
                 $(this).remove();
-                $('#formfield-form-widgets-IVCGE-skos #%(id)s-input').autocomplete('%(url)s/@@token-search?f=%(id)s', {
+                $('#formfield-form-widgets-IVCGE-skos #{id}-input').autocomplete('{url}/@@token-search?f={id}', {{
                     autoFill: false,
-                    minChars: %(minChars)d,
-                    max: %(maxResults)d,
-                    mustMatch: %(mustMatch)s,
-                    matchContains: %(matchContains)s,
-                    formatItem: %(formatItem)s,
-                    formatResult: %(formatResult)s
-                }).result(%(js_callback)s);
-            })
-        });
-    })(jQuery);
+                    minChars: {minChars},
+                    max: {maxResults},
+                    mustMatch: {mustMatch},
+                    matchContains: {matchContains},
+                    formatItem: {formatItem},
+                    formatResult: {formatResult}
+                }}).result({js_callback});
+            }})
+        }});
+    }})(jQuery);
     """
 
+    # Lembre-se de que para conseguir usar { e }  de forma literal nas aberturas
+    # e fechamento de funções do js, você precisa usar {{ e }} respectivamente.
+    # https://docs.python.org/3/library/string.html#formatstrings
     js_callback_template = """\
-    function(event, data, formatted) {
+    function(event, data, formatted) {{
         var field = $('#formfield-form-widgets-IVCGE-skos input[type="checkbox"][value="' + data[0] + '"]');
         if(field.length == 0)
-            $('#formfield-form-widgets-IVCGE-skos #%(id)s-input').before("<" + "label class='plain'><" + "input type='checkbox' name='%(name)s' checked='checked' value='" + data[0] + "' /> " + data[1] + "</label><br />");
+            $('#formfield-form-widgets-IVCGE-skos #{id}-input').before("<" + "label class='plain'><" + "input type='checkbox' name='{name}' checked='checked' value='" + data[0] + "' /> " + data[1] + "</label><br />");
         else
-            field.each(function() { this.checked = true });
+            field.each(function() {{ this.checked = true }});
         if(data[0])
-            $('#formfield-form-widgets-IVCGE-skos #%(id)s-input').val('');
-    }
+            $('#formfield-form-widgets-IVCGE-skos #{id}-input').val('');
+    }}
     """
 
     def js(self):
         context = self.context
         form_url = context.absolute_url()
-        js_callback = self.js_callback_template % dict(id=self.id, name=self.name)
-        return self.js_template % dict(
-            id=self.id,
-            name=self.name,
-            url=form_url,
-            minChars=self.minChars,
-            maxResults=self.maxResults,
-            mustMatch=str(self.mustMatch).lower(),
-            matchContains=str(self.matchContains).lower(),
-            formatItem=self.formatItem,
-            formatResult=self.formatResult,
-            js_callback=js_callback,)
+        js_callback = self.js_callback_template.format(
+            **dict(id=self.id, name=self.name)
+        )
+        return self.js_template.format(
+            **dict(
+                id=self.id,
+                name=self.name,
+                url=form_url,
+                minChars=self.minChars,
+                maxResults=self.maxResults,
+                mustMatch=str(self.mustMatch).lower(),
+                matchContains=str(self.matchContains).lower(),
+                formatItem=self.formatItem,
+                formatResult=self.formatResult,
+                js_callback=js_callback,
+            )
+        )
 
     def vocab(self):
         name = 'brasil.gov.vcge'
@@ -164,7 +180,7 @@ class AutocompleteSearch(BrowserView):
                    if query in i.title.lower()]
 
         results = sorted(results, key=lambda pair: len(pair[1]))
-        return '\n'.join(['%s|%s' % (value, title)
+        return '\n'.join(['{0}|{1}'.format(value, title)
                           for value, title in results])
 
 
@@ -175,5 +191,5 @@ class AutocompletePopulate(AutocompleteSearch):
         results = results.split('\n')
         query = self.request.get('q', '')
         for r in results:
-            if r.startswith(u'%s|' % safe_unicode(query)):
+            if r.startswith(u'{0}|'.format(safe_unicode(query))):
                 return r

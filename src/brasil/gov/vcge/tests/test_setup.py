@@ -40,18 +40,18 @@ class TestInstall(BaseTestCase):
 
     def test_installed(self):
         self.assertTrue(self.qi.isProductInstalled(PROJECTNAME),
-                        '%s not installed' % PROJECTNAME)
+                        '{0} not installed'.format(PROJECTNAME))
 
     def test_dependencies_installed(self):
         for product in ['raptus.autocompletewidget', ]:
             self.assertTrue(self.qi.isProductInstalled(product),
-                            '%s not installed' % product)
+                            '{0} not installed'.format(product))
 
     @unittest.skipIf(not HAS_DEXTERITY, '"dexterity" extra not included')
     def test_dx_dependencies_installed(self):
         for product in ['plone.app.dexterity', ]:
             self.assertTrue(self.qi.isProductInstalled(product),
-                            '%s not installed' % product)
+                            '{0} not installed'.format(product))
 
     def test_browserlayer(self):
         from brasil.gov.vcge.interfaces import IVCGEInstalado
@@ -61,7 +61,7 @@ class TestInstall(BaseTestCase):
         portal_css = self.portal.portal_css
         for css in STYLESHEETS:
             self.assertTrue(css in portal_css.getResourceIds(),
-                            '%s not installed' % css)
+                            '{0} not installed'.format(css))
 
 
 class TestUpgrade(BaseTestCase):
@@ -108,4 +108,4 @@ class TestUninstall(BaseTestCase):
         portal_css = self.portal.portal_css
         for css in STYLESHEETS:
             self.assertTrue(css not in portal_css.getResourceIds(),
-                            '%s installed' % css)
+                            '{0} installed'.format(css))
