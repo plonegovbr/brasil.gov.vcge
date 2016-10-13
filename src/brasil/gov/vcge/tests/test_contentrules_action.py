@@ -2,6 +2,7 @@
 from brasil.gov.vcge.contentrules.action import VCGEAction
 from brasil.gov.vcge.contentrules.action import VCGEEditForm
 from brasil.gov.vcge.testing import INTEGRATION_TESTING
+from plone import api
 from plone.app.contentrules.rule import Rule
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -13,13 +14,13 @@ from Products.CMFCore.PortalFolder import PortalFolder
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component.interfaces import IObjectEvent
-from zope.interface import implements
+from zope.interface import implementer
 
 import unittest2 as unittest
 
 
+@implementer(IObjectEvent)
 class DummyEvent(object):
-    implements(IObjectEvent)
 
     def __init__(self, object):
         self.object = object
@@ -34,14 +35,26 @@ class TestSubjectAction(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.portal.invokeFactory('Folder', 'folder')
-        self.folder = self.portal['folder']
+
+        self.folder = api.content.create(
+            type='Folder',
+            container=self.portal,
+            id='folder'
+        )
         self.folder.skos = [self.term, ]
         self.folder.reindexObject()
-        sub_folder_id = self.folder.invokeFactory('Folder', 'sub_folder')
-        self.sub_folder = self.folder[sub_folder_id]
-        self.document = self.folder[self.folder.invokeFactory('Document',
-                                                              'a_document')]
+
+        self.sub_folder = api.content.create(
+            type='Folder',
+            container=self.folder,
+            id='sub_folder'
+        )
+
+        self.document = api.content.create(
+            type='Document',
+            container=self.folder,
+            id='a_document'
+        )
         self.document.setSubject(['Bar', ])
         self.document.reindexObject()
 
@@ -55,11 +68,10 @@ class TestSubjectAction(unittest.TestCase):
     def test_registered(self):
         element = getUtility(IRuleAction,
                              name='brasil.gov.vcge.actions.VCGE')
-        self.assertEquals('brasil.gov.vcge.actions.VCGE',
-                          element.addview)
-        self.assertEquals('edit', element.editview)
-        self.assertEquals(None, element.for_)
-        self.assertEquals(IObjectEvent, element.event)
+        self.assertEqual('brasil.gov.vcge.actions.VCGE', element.addview)
+        self.assertEqual('edit', element.editview)
+        self.assertEqual(None, element.for_)
+        self.assertEqual(IObjectEvent, element.event)
 
     def test_invoke_add_view(self):
         element = getUtility(IRuleAction,
@@ -77,9 +89,9 @@ class TestSubjectAction(unittest.TestCase):
                                    'skos': [self.term, ]})
 
         e = rule.actions[0]
-        self.failUnless(isinstance(e, VCGEAction))
-        self.assertEquals(False, e.same_as_parent)
-        self.assertEquals([self.term, ], e.skos)
+        self.assertTrue(isinstance(e, VCGEAction))
+        self.assertEqual(False, e.same_as_parent)
+        self.assertEqual([self.term, ], e.skos)
 
     def test_invoke_edit_view(self):
         element = getUtility(IRuleAction,
@@ -87,22 +99,22 @@ class TestSubjectAction(unittest.TestCase):
         e = VCGEAction()
         editview = getMultiAdapter((e, self.folder.REQUEST),
                                    name=element.editview)
-        self.failUnless(isinstance(editview, VCGEEditForm))
+        self.assertTrue(isinstance(editview, VCGEEditForm))
 
     def test_summary_parent_vcge(self):
         e = VCGEAction()
         e.same_as_parent = True
         self.assertEqual(
             e.summary,
-            u"Aplica termos da pasta no conteúdo."
+            u'Aplica termos da pasta no conteúdo.'
         )
 
     def test_summary_with_vcge(self):
         from plone.app.contentrules import PloneMessageFactory as _
         e = VCGEAction()
         e.skos = [self.term, ]
-        msg = _(u"Aplica os termos ${skos}",
-                mapping=dict(skos=" or ".join(e.skos)))
+        msg = _(u'Aplica os termos ${skos}',
+                mapping=dict(skos=' or '.join(e.skos)))
         self.assertEqual(
             e.summary,
             msg
@@ -116,10 +128,9 @@ class TestSubjectAction(unittest.TestCase):
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(self.sub_folder)),
                              IExecutable)
-        self.assertEquals(True, ex())
+        self.assertEqual(True, ex())
 
-        self.assertEquals(list(self.sub_folder.skos),
-                          e.skos)
+        self.assertEqual(list(self.sub_folder.skos), e.skos)
 
     def test_execute_same_as_parent(self):
         e = VCGEAction()
@@ -129,9 +140,9 @@ class TestSubjectAction(unittest.TestCase):
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(self.sub_folder)),
                              IExecutable)
-        self.assertEquals(True, ex())
+        self.assertEqual(True, ex())
 
-        self.assertEquals(self.sub_folder.skos, self.folder.skos)
+        self.assertEqual(self.sub_folder.skos, self.folder.skos)
 
     def test_execute_object_without_vcge(self):
         e = VCGEAction()
@@ -141,7 +152,7 @@ class TestSubjectAction(unittest.TestCase):
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(o)),
                              IExecutable)
-        self.assertEquals(False, ex())
+        self.assertEqual(False, ex())
 
     def test_execute_parent_without_vcge(self):
         e = VCGEAction()
@@ -152,7 +163,7 @@ class TestSubjectAction(unittest.TestCase):
         ex = getMultiAdapter((folder, e,
                              DummyEvent(o)),
                              IExecutable)
-        self.assertEquals(False, ex())
+        self.assertEqual(False, ex())
 
     def test_execute_parent_without_vcge_attribute(self):
         e = VCGEAction()
@@ -162,4 +173,4 @@ class TestSubjectAction(unittest.TestCase):
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(self.sub_folder)),
                              IExecutable)
-        self.assertEquals(False, ex())
+        self.assertEqual(False, ex())

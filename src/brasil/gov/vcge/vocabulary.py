@@ -1,12 +1,13 @@
 # -*- coding:utf-8 -*-
 from brasil.gov.vcge.utils import load_skos
 
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 
+@implementer(IVocabularyFactory)
 class VCGEVocabulary(object):
     """Vocabulario Controlado do Governo Eletronico
 
@@ -29,7 +30,6 @@ class VCGEVocabulary(object):
       >>> doc.title, doc.token, doc.value
       (u'Achados e perdidos', token, token)
     """
-    implements(IVocabularyFactory)
 
     def __call__(self, context):
         items = []

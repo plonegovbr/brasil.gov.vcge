@@ -21,14 +21,14 @@
 
     <adapter factory=".condition.VCGEConditionExecutor" />
 
-    <browser:page 
+    <browser:page
       for="plone.app.contentrules.browser.interfaces.IRuleConditionAdding"
       name="brasil.gov.vcge.conditions.VCGE"
       class=".condition.VCGEAddForm"
       permission="cmf.ManagePortal"
       />
 
-    <browser:page 
+    <browser:page
       for="brasil.gov.vcge.contentrules.condition.IVCGECondition"
       name="edit"
       class=".condition.VCGEEditForm"

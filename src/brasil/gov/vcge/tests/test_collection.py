@@ -39,38 +39,38 @@ class TestCollectionRegistrySetup(BaseTestCase):
     def test_querystring_field_title(self):
         registry = self.registry
         prefix = self.prefix
-        self.assertEqual(registry[prefix + ".title"], "VCGE")
+        self.assertEqual(registry[prefix + '.title'], 'VCGE')
 
     def test_querystring_field_description(self):
         registry = self.registry
         prefix = self.prefix
-        self.assertEqual(registry[prefix + ".description"],
+        self.assertEqual(registry[prefix + '.description'],
                          'Vocabulario Controlado do Governo Eletronico')
 
     def test_querystring_field_is_enabled(self):
         registry = self.registry
         prefix = self.prefix
-        self.assertEqual(registry[prefix + ".enabled"], True)
+        self.assertEqual(registry[prefix + '.enabled'], True)
 
     def test_querystring_field_not_sortable(self):
         registry = self.registry
         prefix = self.prefix
-        self.assertEqual(registry[prefix + ".sortable"], False)
+        self.assertEqual(registry[prefix + '.sortable'], False)
 
     def test_querystring_field_vocabulary(self):
         registry = self.registry
         prefix = self.prefix
-        self.assertEqual(registry[prefix + ".vocabulary"], "brasil.gov.vcge")
+        self.assertEqual(registry[prefix + '.vocabulary'], 'brasil.gov.vcge')
 
     def test_querystring_field_group(self):
         registry = self.registry
         prefix = self.prefix
-        self.assertEqual(registry[prefix + ".group"], "Metadata")
+        self.assertEqual(registry[prefix + '.group'], 'Metadata')
 
     def test_querystring_field_operations(self):
         registry = self.registry
         prefix = self.prefix
-        self.assertEqual(registry[prefix + ".operations"],
+        self.assertEqual(registry[prefix + '.operations'],
                          ['plone.app.querystring.operation.selection.is',
                           'plone.app.querystring.operation.string.is', ]
                          )

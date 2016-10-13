@@ -4,23 +4,22 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="brasil.gov.vcge">
 
-
     <!-- Incluimos as dependencias -->
     <include package="archetypes.schemaextender" />
     <include package="raptus.autocompletewidget" />
 
-   	<!-- Registra adaptador para Archetypes -->
-	<adapter factory=".extender.VCGEExtender"
-    		 provides="archetypes.schemaextender.interfaces.ISchemaExtender"
-                 name="extender-adapter" />
+    <!-- Registra adaptador para Archetypes -->
+    <adapter factory=".extender.VCGEExtender"
+        provides="archetypes.schemaextender.interfaces.ISchemaExtender"
+        name="extender-adapter" />
 
-	<genericsetup:registerProfile
-	     name="default"
-	     title="Brasil.gov.br: Vocabulário Controlado do Governo Eletrônico (Archetypes)"
-	     directory="profiles/default"
-	     description="Integração do VCGE ao Plone (Archetypes)"
-	     provides="Products.GenericSetup.interfaces.EXTENSION"
-	     i18n:attributes="title; description"
-	     />
+    <genericsetup:registerProfile
+        name="default"
+        title="Brasil.gov.br: Vocabulário Controlado do Governo Eletrônico (Archetypes)"
+        directory="profiles/default"
+        description="Integração do VCGE ao Plone (Archetypes)"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title; description"
+        />
 
 </configure>
