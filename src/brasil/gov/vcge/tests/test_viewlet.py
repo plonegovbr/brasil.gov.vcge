@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from brasil.gov.vcge.browser.viewlets import VCGEViewlet
 from brasil.gov.vcge.testing import INTEGRATION_TESTING
+from plone import api
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -22,8 +23,11 @@ class TestViewlet(unittest.TestCase):
     def setUpContent(self):
         token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
         portal = self.portal
-        oId = portal.invokeFactory('Document', 'doc')
-        o = portal[oId]
+        o = api.content.create(
+            type='Document',
+            container=portal,
+            id='doc'
+        )
         o.Schema().getField('skos').set(o, [token, ])
         self.content = o
 
@@ -40,16 +44,16 @@ class TestViewlet(unittest.TestCase):
         viewlet = VCGEViewlet(content, self.request, None, None)
         viewlet.update()
         rel = viewlet.rel()
-        self.assertEquals(rel, u'dc:subject foaf:primaryTopic')
+        self.assertEqual(rel, u'dc:subject foaf:primaryTopic')
 
     def test_skos(self):
         content = self.content
         viewlet = VCGEViewlet(content, self.request, None, None)
         viewlet.update()
         skos = viewlet.skos()
-        self.assertEquals(len(skos), 1)
+        self.assertEqual(len(skos), 1)
         term = skos[0]
-        self.assertEquals(term.get('title'), u'Achados e perdidos')
+        self.assertEqual(term.get('title'), u'Achados e perdidos')
 
     def test_skos_not_existent(self):
         ''' Testa o que acontece quando nao temos o Extender
@@ -59,4 +63,4 @@ class TestViewlet(unittest.TestCase):
         viewlet = VCGEViewlet(portal, self.request, None, None)
         viewlet.update()
         skos = viewlet.skos()
-        self.assertEquals(len(skos), 0)
+        self.assertEqual(len(skos), 0)

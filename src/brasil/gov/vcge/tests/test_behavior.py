@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+from brasil.gov.vcge.browser.viewlets import VCGEViewlet
 from brasil.gov.vcge.dx.behaviors import IVCGE
 from brasil.gov.vcge.dx.behaviors import VCGE
 from brasil.gov.vcge.dx.interfaces import IVCGEDx
-from brasil.gov.vcge.browser.viewlets import VCGEViewlet
 from brasil.gov.vcge.testing import HAS_DEXTERITY
 from brasil.gov.vcge.testing import INTEGRATION_TESTING
+from plone import api
 from plone.app.testing import login
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -13,12 +14,14 @@ from zope.site.hooks import setSite
 
 import unittest2 as unittest
 
+DEXTERITY_FTI_FOLDER = 'folder'
+
 
 def add_folder_type(portal):
     from plone.dexterity.fti import DexterityFTI
 
-    fti = DexterityFTI('folder')
-    portal.portal_types._setObject('folder', fti)
+    fti = DexterityFTI(DEXTERITY_FTI_FOLDER)
+    portal.portal_types._setObject(DEXTERITY_FTI_FOLDER, fti)
     fti.klass = 'plone.dexterity.content.Container'
     fti.filter_content_types = False
     fti.behaviors = (
@@ -61,10 +64,14 @@ class TestBehavior(unittest.TestCase):
         token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
         self.token = token
         portal = self.portal
-        oId = portal.invokeFactory('folder', 'content')
-        o = IVCGE(portal[oId])
-        o.skos = [token, ]
-        self.content = portal[oId]
+        o = api.content.create(
+            type=DEXTERITY_FTI_FOLDER,
+            container=portal,
+            id='content'
+        )
+        i = IVCGE(o)
+        i.skos = [token, ]
+        self.content = o
 
     def setUp(self):
         if not HAS_DEXTERITY:
@@ -76,7 +83,11 @@ class TestBehavior(unittest.TestCase):
         self.portal = portal
         self.fti = add_folder_type(self.portal)
         self.setUpUser()
-        self.portal.invokeFactory('folder', 'folder')
+        api.content.create(
+            type=DEXTERITY_FTI_FOLDER,
+            container=self.portal,
+            id='folder'
+        )
         self.setUpContent()
 
     def test_behavior_applied(self):
@@ -86,7 +97,7 @@ class TestBehavior(unittest.TestCase):
 
     def test_content_information(self):
         content = self.content
-        self.assertEquals(content.skos, [self.token, ])
+        self.assertEqual(content.skos, [self.token, ])
 
 
 class TestViewlet(unittest.TestCase):
@@ -101,8 +112,11 @@ class TestViewlet(unittest.TestCase):
     def setUpContent(self):
         token = 'http://vocab.e.gov.br/2011/03/vcge#achados-perdidos'
         portal = self.portal
-        oId = portal.invokeFactory('folder', 'content')
-        o = portal[oId]
+        o = api.content.create(
+            type=DEXTERITY_FTI_FOLDER,
+            container=portal,
+            id='content'
+        )
         o.skos = [token, ]
         self.content = o
 
@@ -116,7 +130,11 @@ class TestViewlet(unittest.TestCase):
         self.portal = portal
         self.fti = add_folder_type(self.portal)
         self.setUpUser()
-        self.portal.invokeFactory('folder', 'folder')
+        api.content.create(
+            type=DEXTERITY_FTI_FOLDER,
+            container=self.portal,
+            id='folder'
+        )
         self.setUpContent()
 
     def test_rel(self):
@@ -124,16 +142,16 @@ class TestViewlet(unittest.TestCase):
         viewlet = VCGEViewlet(content, self.request, None, None)
         viewlet.update()
         rel = viewlet.rel()
-        self.assertEquals(rel, u'dc:subject foaf:primaryTopic')
+        self.assertEqual(rel, u'dc:subject foaf:primaryTopic')
 
     def test_skos(self):
         content = self.content
         viewlet = VCGEViewlet(content, self.request, None, None)
         viewlet.update()
         skos = viewlet.skos()
-        self.assertEquals(len(skos), 1)
+        self.assertEqual(len(skos), 1)
         term = skos[0]
-        self.assertEquals(term.get('title'), u'Achados e perdidos')
+        self.assertEqual(term.get('title'), u'Achados e perdidos')
 
     def test_skos_not_existent(self):
         ''' Testa o que acontece quando nao temos o Extender
@@ -143,4 +161,4 @@ class TestViewlet(unittest.TestCase):
         viewlet = VCGEViewlet(portal, self.request, None, None)
         viewlet.update()
         skos = viewlet.skos()
-        self.assertEquals(len(skos), 0)
+        self.assertEqual(len(skos), 0)

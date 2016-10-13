@@ -40,28 +40,28 @@ class TestInstall(BaseTestCase):
 
     def test_installed(self):
         self.assertTrue(self.qi.isProductInstalled(PROJECTNAME),
-                        '%s not installed' % PROJECTNAME)
+                        '{0} not installed'.format(PROJECTNAME))
 
     def test_dependencies_installed(self):
         for product in ['raptus.autocompletewidget', ]:
             self.assertTrue(self.qi.isProductInstalled(product),
-                            '%s not installed' % product)
+                            '{0} not installed'.format(product))
 
     @unittest.skipIf(not HAS_DEXTERITY, '"dexterity" extra not included')
     def test_dx_dependencies_installed(self):
         for product in ['plone.app.dexterity', ]:
             self.assertTrue(self.qi.isProductInstalled(product),
-                            '%s not installed' % product)
+                            '{0} not installed'.format(product))
 
     def test_browserlayer(self):
         from brasil.gov.vcge.interfaces import IVCGEInstalado
-        self.assertTrue(IVCGEInstalado in registered_layers())
+        self.assertIn(IVCGEInstalado, registered_layers())
 
     def test_cssregistry(self):
         portal_css = self.portal.portal_css
         for css in STYLESHEETS:
             self.assertTrue(css in portal_css.getResourceIds(),
-                            '%s not installed' % css)
+                            '{0} not installed'.format(css))
 
 
 class TestUpgrade(BaseTestCase):
@@ -75,8 +75,8 @@ class TestUpgrade(BaseTestCase):
                                         self.profile,
                                         '0')
         step = [step for step in upgradeSteps
-                if (step[0]['dest'] == ('1000',))
-                and (step[0]['source'] == ('0',))]
+                if (step[0]['dest'] == ('1000',)) and
+                (step[0]['source'] == ('0',))]
         self.assertEqual(len(step), 1)
 
     def test_to2000_available(self):
@@ -85,8 +85,8 @@ class TestUpgrade(BaseTestCase):
                                         self.profile,
                                         '1000')
         step = [step for step in upgradeSteps
-                if (step[0]['dest'] == ('2000',))
-                and (step[0]['source'] == ('1000',))]
+                if (step[0]['dest'] == ('2000',)) and
+                (step[0]['source'] == ('1000',))]
         self.assertEqual(len(step), 1)
 
 
@@ -108,4 +108,4 @@ class TestUninstall(BaseTestCase):
         portal_css = self.portal.portal_css
         for css in STYLESHEETS:
             self.assertTrue(css not in portal_css.getResourceIds(),
-                            '%s installed' % css)
+                            '{0} installed'.format(css))

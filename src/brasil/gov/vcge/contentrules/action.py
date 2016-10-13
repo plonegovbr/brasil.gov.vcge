@@ -7,9 +7,9 @@ from plone.app.contentrules.browser.formhelper import AddForm
 from plone.app.contentrules.browser.formhelper import EditForm
 from plone.contentrules.rule.interfaces import IExecutable
 from plone.contentrules.rule.interfaces import IRuleElementData
-from zope.component import adapts
+from zope.component import adapter
 from zope.formlib import form
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema import Bool
 from zope.schema import Choice
@@ -18,7 +18,7 @@ from zope.schema import Set
 
 VOCAB = 'brasil.gov.vcge'
 
-FORM_NAME = _(u"Configurar a ação")
+FORM_NAME = _(u'Configurar a ação')
 
 FORM_DESC = _(u'Uma ação que aplica termos do VGCE a um conteúdo')
 
@@ -28,12 +28,12 @@ class IVCGEAction(Interface):
         desta ação.
     """
 
-    same_as_parent = Bool(title=_(u"Utilizar os termos da pasta"),
-                          description=_(u"Selecione esta opção para que os "
-                                        u"termos VCGE sejam herdados da "
-                                        u"pasta que abriga o conteúdo. "
-                                        u"Selecionar esta opção ignora "
-                                        u"os termos do campo a seguir."))
+    same_as_parent = Bool(title=_(u'Utilizar os termos da pasta'),
+                          description=_(u'Selecione esta opção para que os '
+                                        u'termos VCGE sejam herdados da '
+                                        u'pasta que abriga o conteúdo. '
+                                        u'Selecionar esta opção ignora '
+                                        u'os termos do campo a seguir.'))
 
     skos = Set(title=_(u'VCGE'),
                description=_(u'Termos a serem aplicados ao conteúdo.'),
@@ -41,10 +41,10 @@ class IVCGEAction(Interface):
                value_type=Choice(vocabulary=VOCAB))
 
 
+@implementer(IVCGEAction, IRuleElementData)
 class VCGEAction(SimpleItem):
     """ A implementacao persistente para a acao VCGE
     """
-    implements(IVCGEAction, IRuleElementData)
 
     element = 'brasil.gov.vcge.actions.VCGE'
     same_as_parent = False
@@ -55,19 +55,19 @@ class VCGEAction(SimpleItem):
         same_as_parent = self.same_as_parent
         skos = self.skos
         if same_as_parent:
-            msg = _(u"Aplica termos da pasta no conteúdo.")
+            msg = _(u'Aplica termos da pasta no conteúdo.')
         else:
-            msg = _(u"Aplica os termos ${skos}",
-                    mapping=dict(skos=", ".join(skos)))
+            msg = _(u'Aplica os termos ${skos}',
+                    mapping=dict(skos=', '.join(skos)))
         return msg
 
 
+@implementer(IExecutable)
+@adapter(Interface, IVCGEAction, Interface)
 class VCGEActionExecutor(object):
     """ O executor para esta acao.
         Este codigo esta registrado como adaptador no configure.zcml
     """
-    implements(IExecutable)
-    adapts(Interface, IVCGEAction, Interface)
 
     def __init__(self, context, element, event):
         self.context = context
@@ -94,7 +94,7 @@ class VCGEAddForm(AddForm):
     """ Formulario de adicao para acao VCGE
     """
     form_fields = form.FormFields(IVCGEAction)
-    label = _(u"Adicionar ação VCGE na regra de conteúdo")
+    label = _(u'Adicionar ação VCGE na regra de conteúdo')
     description = FORM_DESC
     form_name = FORM_NAME
 
@@ -108,6 +108,6 @@ class VCGEEditForm(EditForm):
     """ Formulario de adicao para edicao VCGE
     """
     form_fields = form.FormFields(IVCGEAction)
-    label = _(u"Editar ação VCGE na regra de conteúdo")
+    label = _(u'Editar ação VCGE na regra de conteúdo')
     description = FORM_DESC
     form_name = FORM_NAME

@@ -5,7 +5,7 @@
     i18n_domain="brasil.gov.vcge">
 
     <includeDependencies package="." />
-	<include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
+    <include zcml:condition="have plone-4" package="Products.CMFCore" file="permissions.zcml" />
 
     <include package=".browser" />
     <include package=".contentrules" />
@@ -13,10 +13,10 @@
     <include package=".upgrades" />
 
     <!-- Apenas se ATContentTypes (Archetypes) estiver instalado -->
-  	<include zcml:condition="installed Products.ATContentTypes" package=".at" />
+    <include zcml:condition="installed Products.ATContentTypes" package=".at" />
 
     <!-- Apenas se Dexterity estiver instalado -->
-  	<include zcml:condition="installed plone.app.dexterity" package=".dx" />
+    <include zcml:condition="installed plone.app.dexterity" package=".dx" />
 
     <!-- Registra o diretorio com traducoes -->
     <i18n:registerTranslations directory="locales" />
@@ -25,10 +25,9 @@
     <include file="profiles.zcml" />
 
     <!-- Vocabulario -->
-	<utility
-	     component=".vocabulary.VCGEVocabularyFactory"
-	     name="brasil.gov.vcge"
-	/>
+    <utility
+        component=".vocabulary.VCGEVocabularyFactory"
+        name="brasil.gov.vcge" />
 
     <!-- Oculta products -->
     <utility

@@ -3,6 +3,7 @@
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from plone.app.layout.viewlets import ViewletBase
+from Products.CMFPlone.utils import safe_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from urllib import urlencode
 from zope.component import queryUtility
@@ -27,7 +28,7 @@ class VCGEViewlet(ViewletBase):
         '''
         context = aq_base(aq_inner(self.context))
         uris = []
-        if hasattr(context, 'skos'):
+        if safe_hasattr(context, 'skos'):
             uris = self.context.skos or []
         name = 'brasil.gov.vcge'
         util = queryUtility(IVocabularyFactory, name)
@@ -38,8 +39,10 @@ class VCGEViewlet(ViewletBase):
             params = urlencode({'skos:list': uri})
             skos.append({'id': uri,
                          'title': title,
-                         'url': '%s/@@search?%s' % (self.nav_root_url,
-                                                    params)})
+                         'url': '{0}/@@search?{1}'.format(
+                             self.nav_root_url,
+                             params
+                         )})
         return skos
 
     def rel(self):

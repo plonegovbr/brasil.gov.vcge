@@ -7,16 +7,16 @@ from plone.app.contentrules.browser.formhelper import AddForm
 from plone.app.contentrules.browser.formhelper import EditForm
 from plone.contentrules.rule.interfaces import IExecutable
 from plone.contentrules.rule.interfaces import IRuleElementData
-from zope.component import adapts
+from zope.component import adapter
 from zope.formlib import form
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema import Choice
 from zope.schema import Set
 
 VOCAB = 'brasil.gov.vcge'
 
-FORM_NAME = _(u"Configurar a condição")
+FORM_NAME = _(u'Configurar a condição')
 
 FORM_DESC = _(u'Uma condição VGCE executa uma regra de conteúdo apenas se '
               u'um dos termos selecionados estiver presente. Caso nenhum termo '
@@ -37,31 +37,31 @@ class IVCGECondition(Interface):
                value_type=Choice(vocabulary=VOCAB))
 
 
+@implementer(IVCGECondition, IRuleElementData)
 class VCGECondition(SimpleItem):
     """ A implementacao persistente para a condicao VCGE
     """
-    implements(IVCGECondition, IRuleElementData)
 
     skos = []
-    element = "brasil.gov.vcge.conditions.VCGE"
+    element = 'brasil.gov.vcge.conditions.VCGE'
 
     @property
     def summary(self):
         skos = self.skos
         if not skos:
-            msg = _(u"Nenhum termo selecionado")
+            msg = _(u'Nenhum termo selecionado')
         else:
-            msg = _(u"VCGE contém ${skos}",
-                    mapping=dict(skos=" or ".join(skos)))
+            msg = _(u'VCGE contém ${skos}',
+                    mapping=dict(skos=' or '.join(skos)))
         return msg
 
 
+@implementer(IExecutable)
+@adapter(Interface, IVCGECondition, Interface)
 class VCGEConditionExecutor(object):
     """ O executor para esta condicao.
         Este codigo esta registrado como adaptador no configure.zcml
     """
-    implements(IExecutable)
-    adapts(Interface, IVCGECondition, Interface)
 
     def __init__(self, context, element, event):
         self.context = context
@@ -102,6 +102,6 @@ class VCGEEditForm(EditForm):
         de VCGE
     """
     form_fields = form.FormFields(IVCGECondition)
-    label = _(u"Editar condição VCGE")
+    label = _(u'Editar condição VCGE')
     description = FORM_DESC
     form_name = FORM_NAME
