@@ -1,7 +1,7 @@
 Alterações
 ------------
 
-1.0.3 (unreleased)
+1.1 (2016-11-07)
 ^^^^^^^^^^^^^^^^^^
 
 * Adiciona ação de regra de conteúdo para aplicação de termos
