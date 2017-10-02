@@ -1,6 +1,2 @@
 [report]
-include =
-    src/brasil/gov/vcge/*
-omit =
-    */test*
-    */upgrades/*
+include = src/brasil/gov/vcge/*
