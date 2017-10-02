@@ -12,7 +12,7 @@ import unittest2 as unittest
 
 
 class TestViewlet(unittest.TestCase):
-    """Test viewlet implementation"""
+    """Test viewlet implementation."""
 
     layer = INTEGRATION_TESTING
 
@@ -56,9 +56,9 @@ class TestViewlet(unittest.TestCase):
         self.assertEqual(term.get('title'), u'Achados e perdidos')
 
     def test_skos_not_existent(self):
-        ''' Testa o que acontece quando nao temos o Extender
-            aplicado a um tipo de conteudo (neste caso o proprio portal)
-        '''
+        """Testa o que acontece quando nao temos o Extender aplicado a
+        um tipo de conteudo (neste caso o proprio portal).
+        """
         portal = self.portal
         viewlet = VCGEViewlet(portal, self.request, None, None)
         viewlet.update()

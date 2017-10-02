@@ -10,7 +10,7 @@ import unittest2 as unittest
 
 
 class BaseTestCase(unittest.TestCase):
-    """base test case to be used by other tests"""
+    """Base test case to be used by other tests."""
 
     layer = INTEGRATION_TESTING
 
@@ -29,7 +29,7 @@ class BaseTestCase(unittest.TestCase):
 
 
 class TestCollectionRegistrySetup(BaseTestCase):
-    """ Garante que temos a opcao de filtrar colecoes pelo VCGE"""
+    """Garante que temos a opcao de filtrar colecoes pelo VCGE."""
 
     def test_querystring_field_available(self):
         registry = self.registry

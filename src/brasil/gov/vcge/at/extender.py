@@ -9,13 +9,12 @@ from raptus.autocompletewidget.widget import AutocompleteMultiSelectionWidget
 from zope.component import adapter
 from zope.interface import implementer
 
+
 AcMSW = AutocompleteMultiSelectionWidget
 
 
 class ExtensionLinesField(ExtensionField, atapi.LinesField):
-    """ Usamos um campo tipo Linhas (LinesField) como base
-        e o extendemos.
-    """
+    """Usamos um campo tipo Linhas (LinesField) como base e o extendemos."""
 
 
 # Este adaptador sera aplicado a todos os tipos baseados em Archetypes
@@ -23,8 +22,8 @@ class ExtensionLinesField(ExtensionField, atapi.LinesField):
 # We use both orderable and browser layer aware sensitive properties
 @implementer(IBrowserLayerAwareExtender)
 class VCGEExtender(object):
-    """ Adaptador que extende os tipos de conteudo base do Plone
-        com o campo skos (representando o VCGE)
+    """Adaptador que extende os tipos de conteudo base do Plone com o
+    campo skos (representando o VCGE).
     """
 
     layer = IVCGEInstalado
@@ -42,7 +41,5 @@ class VCGEExtender(object):
         self.context = context
 
     def getFields(self):
-        """
-        @return: Lista de campos adicionados ao conteudo
-        """
+        """Lista de campos adicionados ao conteudo."""
         return self.fields

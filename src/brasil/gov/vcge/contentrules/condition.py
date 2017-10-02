@@ -14,6 +14,7 @@ from zope.interface import Interface
 from zope.schema import Choice
 from zope.schema import Set
 
+
 VOCAB = 'brasil.gov.vcge'
 
 FORM_NAME = _(u'Configurar a condição')
@@ -25,8 +26,8 @@ FORM_DESC = _(u'Uma condição VGCE executa uma regra de conteúdo apenas se '
 
 
 class IVCGECondition(Interface):
-    """ Interface utilizada para descrever os elementos configuraveis
-        desta condicao.
+    """Interface utilizada para descrever os elementos configuraveis
+    desta condicao.
     """
 
     skos = Set(title=_(u'VCGE'),
@@ -39,8 +40,7 @@ class IVCGECondition(Interface):
 
 @implementer(IVCGECondition, IRuleElementData)
 class VCGECondition(SimpleItem):
-    """ A implementacao persistente para a condicao VCGE
-    """
+    """A implementacao persistente para a condicao VCGE."""
 
     skos = []
     element = 'brasil.gov.vcge.conditions.VCGE'
@@ -59,8 +59,8 @@ class VCGECondition(SimpleItem):
 @implementer(IExecutable)
 @adapter(Interface, IVCGECondition, Interface)
 class VCGEConditionExecutor(object):
-    """ O executor para esta condicao.
-        Este codigo esta registrado como adaptador no configure.zcml
+    """O executor para esta condicao.
+    Este codigo esta registrado como adaptador no configure.zcml.
     """
 
     def __init__(self, context, element, event):
@@ -83,9 +83,7 @@ class VCGEConditionExecutor(object):
 
 
 class VCGEAddForm(AddForm):
-    """ Formulario de adicao para condicoes
-        de VCGE
-    """
+    """Formulario de adicao para condicoes de VCGE."""
     form_fields = form.FormFields(IVCGECondition)
     label = _(u'Adicionar condição VCGE')
     description = FORM_DESC
@@ -98,9 +96,7 @@ class VCGEAddForm(AddForm):
 
 
 class VCGEEditForm(EditForm):
-    """ Formulario de edicao para condicoes
-        de VCGE
-    """
+    """Formulario de edicao para condicoes de VCGE."""
     form_fields = form.FormFields(IVCGECondition)
     label = _(u'Editar condição VCGE')
     description = FORM_DESC

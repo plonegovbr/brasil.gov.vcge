@@ -1,6 +1,5 @@
 # -*- coding:utf-8 -*-
 from brasil.gov.vcge.utils import load_skos
-
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm

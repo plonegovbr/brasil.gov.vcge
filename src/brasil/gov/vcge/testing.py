@@ -6,6 +6,7 @@ from plone.app.testing import PloneSandboxLayer
 
 import pkg_resources
 
+
 HAS_DEXTERITY = 'plone.app.dexterity' in pkg_resources.AvailableDistributions()
 
 

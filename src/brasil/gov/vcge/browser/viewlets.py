@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" Modulo que implementa o(s) viewlet(s) do VCGE"""
+"""Modulo que implementa o(s) viewlet(s) do VCGE."""
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from plone.app.layout.viewlets import ViewletBase
@@ -11,21 +11,18 @@ from zope.schema.interfaces import IVocabularyFactory
 
 
 class VCGEViewlet(ViewletBase):
-    ''' Viewlet adicionado a estrutura visual do portal
-    '''
+    """Viewlet adicionado a estrutura visual do portal."""
     # Indica qual o template sera usado por este viewlet
     index = ViewPageTemplateFile('templates/vcge.pt')
 
     def update(self):
-        ''' Prepara/Atualiza os valores utilizados pelo Viewlet
-        '''
+        """Prepara/Atualiza os valores utilizados pelo Viewlet."""
         super(VCGEViewlet, self).update()
         ps = self.context.restrictedTraverse('@@plone_portal_state')
         self.nav_root_url = ps.navigation_root().absolute_url()
 
     def skos(self):
-        ''' Retorna lista de itens selecionados neste conteudo
-        '''
+        """Retorna lista de itens selecionados neste conteudo."""
         context = aq_base(aq_inner(self.context))
         uris = []
         if safe_hasattr(context, 'skos'):
@@ -46,8 +43,7 @@ class VCGEViewlet(ViewletBase):
         return skos
 
     def rel(self):
-        '''Formata rel a ser utilizado no href de cada termo
-        '''
+        """Formata rel a ser utilizado no href de cada termo."""
         return u'dc:subject foaf:primaryTopic'
 
 
