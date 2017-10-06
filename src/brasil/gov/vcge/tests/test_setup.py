@@ -12,6 +12,7 @@ from zope.site.hooks import setSite
 
 import unittest2 as unittest
 
+
 STYLESHEETS = [
 ]
 

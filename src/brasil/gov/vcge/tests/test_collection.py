@@ -10,7 +10,7 @@ import unittest2 as unittest
 
 
 class BaseTestCase(unittest.TestCase):
-    """base test case to be used by other tests"""
+    """Base test case to be used by other tests."""
 
     layer = INTEGRATION_TESTING
 
@@ -29,7 +29,7 @@ class BaseTestCase(unittest.TestCase):
 
 
 class TestCollectionRegistrySetup(BaseTestCase):
-    """ Garante que temos a opcao de filtrar colecoes pelo VCGE"""
+    """Garante que temos a opcao de filtrar colecoes pelo VCGE."""
 
     def test_querystring_field_available(self):
         registry = self.registry
@@ -44,8 +44,10 @@ class TestCollectionRegistrySetup(BaseTestCase):
     def test_querystring_field_description(self):
         registry = self.registry
         prefix = self.prefix
-        self.assertEqual(registry[prefix + '.description'],
-                         'Vocabulario Controlado do Governo Eletronico')
+        self.assertEqual(
+            registry[prefix + '.description'],
+            'Vocabulario Controlado do Governo Eletronico',
+        )
 
     def test_querystring_field_is_enabled(self):
         registry = self.registry
@@ -70,7 +72,10 @@ class TestCollectionRegistrySetup(BaseTestCase):
     def test_querystring_field_operations(self):
         registry = self.registry
         prefix = self.prefix
-        self.assertEqual(registry[prefix + '.operations'],
-                         ['plone.app.querystring.operation.selection.is',
-                          'plone.app.querystring.operation.string.is', ]
-                         )
+        self.assertEqual(
+            registry[prefix + '.operations'],
+            [
+                'plone.app.querystring.operation.selection.is',
+                'plone.app.querystring.operation.string.is',
+            ],
+        )

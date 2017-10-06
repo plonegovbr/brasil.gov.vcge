@@ -14,6 +14,7 @@ from zope.site.hooks import setSite
 
 import unittest2 as unittest
 
+
 DEXTERITY_FTI_FOLDER = 'folder'
 
 
@@ -26,7 +27,8 @@ def add_folder_type(portal):
     fti.filter_content_types = False
     fti.behaviors = (
         'plone.app.dexterity.behaviors.metadata.IBasic',
-        'brasil.gov.vcge.dx.behaviors.IVCGE')
+        'brasil.gov.vcge.dx.behaviors.IVCGE',
+    )
     return fti
 
 
@@ -52,7 +54,7 @@ class TestVCGE(unittest.TestCase):
 
 
 class TestBehavior(unittest.TestCase):
-    """Test behavior applied in a content type """
+    """Test behavior applied in a content type."""
 
     layer = INTEGRATION_TESTING
 
@@ -101,7 +103,7 @@ class TestBehavior(unittest.TestCase):
 
 
 class TestViewlet(unittest.TestCase):
-    """Test viewlet implementation with dexterity"""
+    """Test viewlet implementation with Dexterity."""
 
     layer = INTEGRATION_TESTING
 
@@ -115,7 +117,7 @@ class TestViewlet(unittest.TestCase):
         o = api.content.create(
             type=DEXTERITY_FTI_FOLDER,
             container=portal,
-            id='content'
+            id='content',
         )
         o.skos = [token, ]
         self.content = o
@@ -133,7 +135,7 @@ class TestViewlet(unittest.TestCase):
         api.content.create(
             type=DEXTERITY_FTI_FOLDER,
             container=self.portal,
-            id='folder'
+            id='folder',
         )
         self.setUpContent()
 
@@ -154,9 +156,9 @@ class TestViewlet(unittest.TestCase):
         self.assertEqual(term.get('title'), u'Cultura')
 
     def test_skos_not_existent(self):
-        ''' Testa o que acontece quando nao temos o Extender
-            aplicado a um tipo de conteudo (neste caso o proprio portal)
-        '''
+        """Testa o que acontece quando nao temos o Extender aplicado a
+        um tipo de conteudo (neste caso o proprio portal).
+        """
         portal = self.portal
         viewlet = VCGEViewlet(portal, self.request, None, None)
         viewlet.update()

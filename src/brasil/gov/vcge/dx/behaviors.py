@@ -11,8 +11,7 @@ from zope.interface import alsoProvides
 
 
 class IVCGE(model.Schema):
-    ''' VCGE Behaviour
-    '''
+    """VCGE Behaviour."""
 
     # categorization fieldset
     model.fieldset(

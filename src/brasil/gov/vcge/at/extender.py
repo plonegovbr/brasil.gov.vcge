@@ -9,6 +9,7 @@ from raptus.autocompletewidget.widget import AutocompleteMultiSelectionWidget
 from zope.component import adapter
 from zope.interface import implementer
 
+
 AcMSW = AutocompleteMultiSelectionWidget
 
 

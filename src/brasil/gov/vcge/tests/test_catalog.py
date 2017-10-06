@@ -10,7 +10,7 @@ import unittest2 as unittest
 
 
 class BaseTestCase(unittest.TestCase):
-    """base test case to be used by other tests"""
+    """Base test case to be used by other tests."""
 
     layer = INTEGRATION_TESTING
 
@@ -27,10 +27,10 @@ class BaseTestCase(unittest.TestCase):
 
 
 class TestCatalogSetup(BaseTestCase):
-    """ Garante que temos o indice e a coluna criados"""
+    """Garante que temos o indice e a coluna criados."""
 
     def test_index(self):
-        self.assertTrue('skos' in self.ct.Indexes)
+        self.assertIn('skos', self.ct.Indexes)
 
     def test_column(self):
-        self.assertTrue('skos' in self.ct.schema())
+        self.assertIn('skos', self.ct.schema())

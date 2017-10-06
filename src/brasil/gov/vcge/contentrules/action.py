@@ -24,8 +24,8 @@ FORM_DESC = _(u'Uma ação que aplica termos do VGCE a um conteúdo')
 
 
 class IVCGEAction(Interface):
-    """ Interface utilizada para descrever os elementos configuraveis
-        desta ação.
+    """Interface utilizada para descrever os elementos configuraveis
+    desta ação.
     """
 
     same_as_parent = Bool(title=_(u'Utilizar os termos da pasta'),
@@ -43,8 +43,7 @@ class IVCGEAction(Interface):
 
 @implementer(IVCGEAction, IRuleElementData)
 class VCGEAction(SimpleItem):
-    """ A implementacao persistente para a acao VCGE
-    """
+    """A implementacao persistente para a acao VCGE."""
 
     element = 'brasil.gov.vcge.actions.VCGE'
     same_as_parent = False
@@ -65,8 +64,8 @@ class VCGEAction(SimpleItem):
 @adapter(Interface, IVCGEAction, Interface)
 @implementer(IExecutable)
 class VCGEActionExecutor(object):
-    """ O executor para esta acao.
-        Este codigo esta registrado como adaptador no configure.zcml
+    """O executor para esta acao.
+    Este codigo esta registrado como adaptador no configure.zcml.
     """
 
     def __init__(self, context, element, event):
@@ -75,8 +74,7 @@ class VCGEActionExecutor(object):
         self.event = event
 
     def __call__(self):
-        """  Apply selected layout to a content item
-        """
+        """Apply selected layout to a content item."""
         obj = self.event.object
         same_as_parent = self.element.same_as_parent
         skos = self.element.skos
@@ -91,8 +89,7 @@ class VCGEActionExecutor(object):
 
 
 class VCGEAddForm(AddForm):
-    """ Formulario de adicao para acao VCGE
-    """
+    """Formulario de adicao para acao VCGE."""
     form_fields = form.FormFields(IVCGEAction)
     label = _(u'Adicionar ação VCGE na regra de conteúdo')
     description = FORM_DESC
@@ -105,8 +102,7 @@ class VCGEAddForm(AddForm):
 
 
 class VCGEEditForm(EditForm):
-    """ Formulario de adicao para edicao VCGE
-    """
+    """Formulario de adicao para edicao VCGE."""
     form_fields = form.FormFields(IVCGEAction)
     label = _(u'Editar ação VCGE na regra de conteúdo')
     description = FORM_DESC
