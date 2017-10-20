@@ -4,7 +4,8 @@ Alterações
 1.2 (unreleased)
 ^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Remove dependência desnecessária no collective.z3cform.widgets.
+  [hvelarde]
 
 
 1.1 (2016-11-07)
