@@ -4,7 +4,8 @@ Alterações
 2.0.1 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Remove dependência desnecessária no collective.z3cform.widgets.
+  [hvelarde]
 
 
 2.0.0 (2014-08-08)

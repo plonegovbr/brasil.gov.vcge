@@ -7,7 +7,6 @@
     i18n_domain="brasil.gov.vcge">
 
     <!-- Incluimos as dependencias -->
-    <include package="collective.z3cform.widgets" />
     <include package="plone.app.dexterity" />
     <include package="plone.behavior" file="meta.zcml" />
     <include package="plone.dexterity" />
