@@ -1,15 +1,15 @@
-Alterações
-------------
+Changelog
+---------
 
-1.2 (unreleased)
-^^^^^^^^^^^^^^^^
+1.1.1 (2017-10-31)
+^^^^^^^^^^^^^^^^^^
 
 - Remove dependência desnecessária no collective.z3cform.widgets.
   [hvelarde]
 
 
 1.1 (2016-11-07)
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 * Adiciona ação de regra de conteúdo para aplicação de termos
   VCGE a conteúdos
@@ -33,7 +33,7 @@ Alterações
 
 
 1.0.1 (2013-11-18)
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 * Removido suporte as versoes 4.0 e 4.1 do Plone
   [ericof]
@@ -49,14 +49,14 @@ Alterações
 
 
 1.0 (2013-10-29)
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 * Adicionado nome ao extender do Archetypes
   [lepri]
 
 
 1.0rc1 (2013-08-26)
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 * Alterado id categorias do vcge para que ele não entre em conflito com o
   id do collective.nitf, dando erro de validação w3c.
