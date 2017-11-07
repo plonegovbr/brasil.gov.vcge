@@ -4,7 +4,7 @@ from brasil.gov.vcge.testing import INTEGRATION_TESTING
 from zope.component import queryUtility
 from zope.schema.interfaces import IVocabularyFactory
 
-import unittest2 as unittest
+import unittest
 
 
 class VocabulariesTestCase(unittest.TestCase):

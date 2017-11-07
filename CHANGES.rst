@@ -4,7 +4,11 @@ Changelog
 1.1.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Remove suporte para Python 2.6 e Plone 4.2.
+  [hvelarde]
+
+- Remove dependencia no unittest2.
+  [hvelarde]
 
 
 1.1.1 (2017-10-31)

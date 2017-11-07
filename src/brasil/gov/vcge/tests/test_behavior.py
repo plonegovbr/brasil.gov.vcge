@@ -12,7 +12,7 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from zope.site.hooks import setSite
 
-import unittest2 as unittest
+import unittest
 
 
 DEXTERITY_FTI_FOLDER = 'folder'
