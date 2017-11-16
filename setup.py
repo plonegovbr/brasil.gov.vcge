@@ -40,6 +40,7 @@ setup(name='brasil.gov.vcge',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
+          'future',
           'Plone >=4.3',
           'plone.api',
           'raptus.autocompletewidget',
