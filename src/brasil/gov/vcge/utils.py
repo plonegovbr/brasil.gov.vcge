@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from future.builtins import str  # isort:skip
 from brasil.gov.vcge import config
 from plone.memoize import forever
 from rdflib.namespace import SKOS
@@ -26,7 +27,7 @@ def parse_skos(data, format='xml'):
     termos = {}
     for obj in objs:
         oId = obj[0].toPython()
-        title = unicode(obj[2])
+        title = str(obj[2])
         lang = obj[2].language
         if oId not in termos:
             termos[oId] = {'title': u'', 'lang': u''}
