@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-1.2.1 (unreleased)
+1.2.1 (2017-11-17)
 ^^^^^^^^^^^^^^^^^^
 
 - Remove completamente dependencia no unittest2.
