@@ -1,8 +1,8 @@
 Changelog
 ---------
 
-1.1.2 (unreleased)
-^^^^^^^^^^^^^^^^^^
+1.2 (2017-11-17)
+^^^^^^^^^^^^^^^^
 
 - Adiciona suporte para Python 3 e dependencia com o future.
   [caduvieira]
