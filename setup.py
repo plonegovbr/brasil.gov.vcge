@@ -4,7 +4,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 version = '1.3.dev0'
-description = u'.gov.br: Vocabulario Controlado do Governo Eletronico'
+description = '.gov.br: Vocabulario Controlado do Governo Eletronico'
 long_description = (
     open('README.rst').read() + '\n' +
     open('CONTRIBUTORS.rst').read() + '\n' +
