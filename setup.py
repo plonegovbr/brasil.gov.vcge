@@ -4,7 +4,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 version = '1.3.dev0'
-description = u'.gov.br: VocabulĂĄrio Controlado do Governo EletrĂ´nico'
+description = u'.gov.br: Vocabulario Controlado do Governo Eletronico'
 long_description = (
     open('README.rst').read() + '\n' +
     open('CONTRIBUTORS.rst').read() + '\n' +
@@ -72,7 +72,6 @@ setup(name='brasil.gov.vcge',
           'test': [
               'interlude',
               'plone.app.testing',
-              'unittest2',
           ]},
       entry_points="""
       [z3c.autoinclude.plugin]

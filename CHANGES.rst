@@ -1,10 +1,11 @@
 Changelog
 ---------
 
-1.3 (unreleased)
-^^^^^^^^^^^^^^^^
+1.2.1 (unreleased)
+^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Remove completamente dependencia no unittest2.
+  [hvelarde]
 
 
 1.2 (2017-11-17)
