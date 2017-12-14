@@ -25,6 +25,7 @@ class Fixture(PloneSandboxLayer):
         if HAS_DEXTERITY:
             self.applyProfile(portal, 'brasil.gov.vcge.dx:default')
 
+
 FIXTURE = Fixture()
 
 INTEGRATION_TESTING = IntegrationTesting(

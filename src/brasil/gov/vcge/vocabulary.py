@@ -38,4 +38,5 @@ class VCGEVocabulary(object):
                  for (key, value) in items]
         return SimpleVocabulary(items)
 
+
 VCGEVocabularyFactory = VCGEVocabulary()
