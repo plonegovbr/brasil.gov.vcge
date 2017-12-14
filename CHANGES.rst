@@ -4,7 +4,8 @@ Changelog
 1.2.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Corrige ``UnicodeEncodeError`` ao buscar termos no vocabulário (fecha `#48 <https://github.com/plonegovbr/brasil.gov.vcge/issues/48>`_).
+  [hvelarde]
 
 
 1.2.1 (2017-11-17)
