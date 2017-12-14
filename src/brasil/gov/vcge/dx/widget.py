@@ -180,7 +180,7 @@ class AutocompleteSearch(BrowserView):
                    if query in i.title.lower()]
 
         results = sorted(results, key=lambda pair: len(pair[1]))
-        return '\n'.join(['{0}|{1}'.format(value, title)
+        return '\n'.join(['{0}|{1}'.format(value, title.encode('utf-8'))
                           for value, title in results])
 
 

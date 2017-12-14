@@ -4,6 +4,9 @@ Alterações
 2.0.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Corrige ``UnicodeEncodeError`` ao buscar termos no vocabulário (fecha `#48 <https://github.com/plonegovbr/brasil.gov.vcge/issues/48>`_).
+  [hvelarde]
+
 - Adiciona suporte para Python 3 e dependencia com o future.
   [caduvieira]
 
