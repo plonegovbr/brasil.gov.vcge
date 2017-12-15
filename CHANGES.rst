@@ -4,6 +4,9 @@ Changelog
 1.2.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Corrige compatibilidade com Python 3 no ``VCGEVocabulary``.
+  [hvelarde]
+
 - Corrige ``UnicodeEncodeError`` ao buscar termos no vocabulário (fecha `#48 <https://github.com/plonegovbr/brasil.gov.vcge/issues/48>`_).
   [hvelarde]
 
