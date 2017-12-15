@@ -8,7 +8,7 @@ Alterações
   [hvelarde]
 
 - Adiciona suporte para Python 3 e dependencia com o future.
-  [caduvieira]
+  [caduvieira, hvelarde]
 
 - Remove suporte para Python 2.6 e Plone 4.2.
   [hvelarde]

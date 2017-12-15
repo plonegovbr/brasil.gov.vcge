@@ -33,9 +33,9 @@ class VCGEVocabulary(object):
     def __call__(self, context):
         items = []
         termos = load_skos()
-        items = termos.items()
+        # XXX: calling .items() in Python 2 is inefficient
         items = [SimpleTerm(key, key, value['title'])
-                 for (key, value) in items]
+                 for (key, value) in termos.items()]
         return SimpleVocabulary(items)
 
 
