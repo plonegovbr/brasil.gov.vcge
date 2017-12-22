@@ -3,8 +3,8 @@
 from setuptools import find_packages
 from setuptools import setup
 
-version = '2.0.2'
-description = u'.gov.br: VocabulĂĄrio Controlado do Governo EletrĂ´nico'
+version = '2.0.3.dev0'
+description = '.gov.br: Vocabulario Controlado do Governo Eletronico'
 long_description = (
     open('README.rst').read() + '\n' +
     open('CONTRIBUTORS.rst').read() + '\n' +
