@@ -1,7 +1,7 @@
 Alterações
 ------------
 
-2.0.2 (unreleased)
+2.0.2 (2017-12-22)
 ^^^^^^^^^^^^^^^^^^
 
 - Corrige ``UnicodeEncodeError`` ao buscar termos no vocabulário (fecha `#48 <https://github.com/plonegovbr/brasil.gov.vcge/issues/48>`_).
