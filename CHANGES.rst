@@ -4,7 +4,8 @@ Alterações
 2.0.3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Trata excessão ao carregar o vocabulario.
+  [rodfersou]
 
 
 2.0.2 (2017-12-22)

@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from brasil.gov.vcge.config import PROJECTNAME
 from Products.CMFPlone.utils import base_hasattr
 from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
@@ -8,7 +9,11 @@ from zope.browserpage.viewpagetemplatefile import ViewPageTemplateFile
 from zope.component import queryUtility
 from zope.schema.interfaces import IVocabularyFactory
 
+import logging
 import zope.interface
+
+
+logger = logging.getLogger(PROJECTNAME)
 
 
 class ISkosWidget(interfaces.ISequenceWidget):
@@ -118,9 +123,13 @@ class SkosWidget(widget.SequenceWidget):
             # Ignore no value entries. They are in the request only.
             if token == self.noValueToken:
                 continue
-            term = terms.getTermByToken(token)
-            data.append({'value': token,
-                         'title': term.title})
+            try:
+                term = terms.getTermByToken(token)
+                data.append({'value': token,
+                             'title': term.title})
+            except LookupError:
+                logger.warning('Token "{0}" not found.'.format(token))
+                continue
         return data
 
     @property
@@ -131,8 +140,12 @@ class SkosWidget(widget.SequenceWidget):
             # Ignore no value entries. They are in the request only.
             if token == self.noValueToken:
                 continue
-            term = terms.getTermByToken(token)
-            value.append(term.title)
+            try:
+                term = terms.getTermByToken(token)
+                value.append(term.title)
+            except LookupError:
+                logger.warning('Token "{0}" not found.'.format(token))
+                continue
         return value
 
     def extract(self, default=interfaces.NO_VALUE):
@@ -151,6 +164,7 @@ class SkosWidget(widget.SequenceWidget):
                 try:
                     terms.getTermByToken(token)
                 except LookupError:
+                    logger.warning('Token "{0}" not found.'.format(token))
                     return default
         return value
 
