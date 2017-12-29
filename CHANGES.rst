@@ -4,6 +4,9 @@ Changelog
 1.2.2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Remove dependência desnecessária no five.grok.
+  [hvelarde]
+
 - Corrige compatibilidade com Python 3 no ``VCGEVocabulary``.
   [hvelarde]
 
