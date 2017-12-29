@@ -57,7 +57,7 @@ setup(name='brasil.gov.vcge',
               'Products.Archetypes',
           ],
           'dexterity': [
-              'plone.app.dexterity [grok]',
+              'plone.app.dexterity',
               'plone.autoform',
               'plone.behavior',
               'plone.indexer',

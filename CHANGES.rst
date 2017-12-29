@@ -4,7 +4,8 @@ Alterações
 2.0.3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Remove dependência desnecessária no five.grok.
+  [hvelarde]
 
 
 2.0.2 (2017-12-22)
