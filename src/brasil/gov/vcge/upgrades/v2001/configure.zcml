@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeSteps
+      source="2000"
+      destination="2001"
+      profile="brasil.gov.vcge:default">
+
+    <genericsetup:upgradeStep
+        title="Migrate terms from VCGE 1 to 2B"
+        description=""
+        handler=".term_migration"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

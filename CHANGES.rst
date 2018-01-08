@@ -4,7 +4,8 @@ Alterações
 2.0.3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Adiciona upgrade step para migração dos termos do VCGE 1 para VCGE 2.
+  [hvelarde]
 
 
 2.0.2 (2017-12-22)

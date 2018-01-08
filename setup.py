@@ -71,6 +71,7 @@ setup(name='brasil.gov.vcge',
           ],
           'test': [
               'interlude',
+              'plone.app.robotframework',  # XXX: plone.app.event
               'plone.app.testing',
               'unittest2',
           ]},

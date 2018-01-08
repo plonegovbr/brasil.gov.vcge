@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
-from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 
 import pkg_resources
 
+
+try:
+    pkg_resources.get_distribution('plone.app.contenttypes')
+except pkg_resources.DistributionNotFound:
+    from plone.app.testing import PLONE_FIXTURE
+else:
+    from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE
 
 HAS_DEXTERITY = 'plone.app.dexterity' in pkg_resources.AvailableDistributions()
 
