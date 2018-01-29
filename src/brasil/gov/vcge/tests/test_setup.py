@@ -44,13 +44,13 @@ class TestInstall(BaseTestCase):
                         '{0} not installed'.format(PROJECTNAME))
 
     def test_dependencies_installed(self):
-        for product in ['raptus.autocompletewidget', ]:
+        for product in ['raptus.autocompletewidget']:
             self.assertTrue(self.qi.isProductInstalled(product),
                             '{0} not installed'.format(product))
 
     @unittest.skipIf(not HAS_DEXTERITY, '"dexterity" extra not included')
     def test_dx_dependencies_installed(self):
-        for product in ['plone.app.dexterity', ]:
+        for product in ['plone.app.dexterity']:
             self.assertTrue(self.qi.isProductInstalled(product),
                             '{0} not installed'.format(product))
 

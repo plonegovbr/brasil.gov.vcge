@@ -26,9 +26,9 @@ class TestViewlet(unittest.TestCase):
         o = api.content.create(
             type='Document',
             container=portal,
-            id='doc'
+            id='doc',
         )
-        o.Schema().getField('skos').set(o, [token, ])
+        o.Schema().getField('skos').set(o, [token])
         self.content = o
 
     def setUp(self):

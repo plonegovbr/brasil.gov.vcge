@@ -38,7 +38,7 @@ class VCGEViewlet(ViewletBase):
                          'title': title,
                          'url': '{0}/@@search?{1}'.format(
                              self.nav_root_url,
-                             params
+                             params,
                          )})
         return skos
 

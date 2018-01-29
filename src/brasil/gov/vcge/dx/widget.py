@@ -76,21 +76,18 @@ class SkosWidget(widget.SequenceWidget):
         context = self.context
         form_url = context.absolute_url()
         js_callback = self.js_callback_template.format(
-            **dict(id=self.id, name=self.name)
-        )
+            id=self.id, name=self.name)
         return self.js_template.format(
-            **dict(
-                id=self.id,
-                name=self.name,
-                url=form_url,
-                minChars=self.minChars,
-                maxResults=self.maxResults,
-                mustMatch=str(self.mustMatch).lower(),
-                matchContains=str(self.matchContains).lower(),
-                formatItem=self.formatItem,
-                formatResult=self.formatResult,
-                js_callback=js_callback,
-            )
+            id=self.id,
+            name=self.name,
+            url=form_url,
+            minChars=self.minChars,
+            maxResults=self.maxResults,
+            mustMatch=str(self.mustMatch).lower(),
+            matchContains=str(self.matchContains).lower(),
+            formatItem=self.formatItem,
+            formatResult=self.formatResult,
+            js_callback=js_callback,
         )
 
     def vocab(self):

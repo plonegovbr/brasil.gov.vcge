@@ -39,23 +39,23 @@ class TestSubjectAction(unittest.TestCase):
         self.folder = api.content.create(
             type='Folder',
             container=self.portal,
-            id='folder'
+            id='folder',
         )
-        self.folder.skos = [self.term, ]
+        self.folder.skos = [self.term]
         self.folder.reindexObject()
 
         self.sub_folder = api.content.create(
             type='Folder',
             container=self.folder,
-            id='sub_folder'
+            id='sub_folder',
         )
 
         self.document = api.content.create(
             type='Document',
             container=self.folder,
-            id='a_document'
+            id='a_document',
         )
-        self.document.setSubject(['Bar', ])
+        self.document.setSubject(['Bar'])
         self.document.reindexObject()
 
         o = PortalContent('cmf', 'CMF Content', '', '', '')
@@ -86,12 +86,12 @@ class TestSubjectAction(unittest.TestCase):
                                   name=element.addview)
 
         addview.createAndAdd(data={'same_as_parent': False,
-                                   'skos': [self.term, ]})
+                                   'skos': [self.term]})
 
         e = rule.actions[0]
         self.assertTrue(isinstance(e, VCGEAction))
         self.assertEqual(False, e.same_as_parent)
-        self.assertEqual([self.term, ], e.skos)
+        self.assertEqual([self.term], e.skos)
 
     def test_invoke_edit_view(self):
         element = getUtility(IRuleAction,
@@ -104,26 +104,20 @@ class TestSubjectAction(unittest.TestCase):
     def test_summary_parent_vcge(self):
         e = VCGEAction()
         e.same_as_parent = True
-        self.assertEqual(
-            e.summary,
-            u'Aplica termos da pasta no conteúdo.'
-        )
+        self.assertEqual(e.summary, u'Aplica termos da pasta no conteúdo.')
 
     def test_summary_with_vcge(self):
         from plone.app.contentrules import PloneMessageFactory as _
         e = VCGEAction()
-        e.skos = [self.term, ]
+        e.skos = [self.term]
         msg = _(u'Aplica os termos ${skos}',
                 mapping=dict(skos=' or '.join(e.skos)))
-        self.assertEqual(
-            e.summary,
-            msg
-        )
+        self.assertEqual(e.summary, msg)
 
     def test_execute_with_vcge(self):
         e = VCGEAction()
         e.same_as_parent = False
-        e.skos = ['http://vocab.e.gov.br/2011/03/vcge#governo', ]
+        e.skos = ['http://vocab.e.gov.br/2011/03/vcge#governo']
 
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(self.sub_folder)),
@@ -147,7 +141,7 @@ class TestSubjectAction(unittest.TestCase):
     def test_execute_object_without_vcge(self):
         e = VCGEAction()
         e.same_as_parent = False
-        e.skos = ['http://vocab.e.gov.br/2011/03/vcge#governo', ]
+        e.skos = ['http://vocab.e.gov.br/2011/03/vcge#governo']
         o = self.folder['cmf']
         ex = getMultiAdapter((self.folder, e,
                              DummyEvent(o)),

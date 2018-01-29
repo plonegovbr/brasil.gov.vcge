@@ -31,12 +31,13 @@ class VCGEExtender(object):
     layer = IVCGEInstalado
 
     fields = [
-        ExtensionLinesField('skos',
-                            schemata='categorization',
-                            vocabulary_factory='brasil.gov.vcge',
-                            enforceVocabulary=True,
-                            widget=AcMSW(label=_(u'VCGE'),
-                                         description=_(u'vcge_desc'),))
+        ExtensionLinesField(
+            'skos',
+            schemata='categorization',
+            vocabulary_factory='brasil.gov.vcge',
+            enforceVocabulary=True,
+            widget=AcMSW(label=_(u'VCGE'), description=_(u'vcge_desc')),
+        ),
     ]
 
     def __init__(self, context):

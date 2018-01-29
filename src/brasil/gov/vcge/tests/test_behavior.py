@@ -69,10 +69,10 @@ class TestBehavior(unittest.TestCase):
         o = api.content.create(
             type=DEXTERITY_FTI_FOLDER,
             container=portal,
-            id='content'
+            id='content',
         )
         i = IVCGE(o)
-        i.skos = [token, ]
+        i.skos = [token]
         self.content = o
 
     def setUp(self):
@@ -88,7 +88,7 @@ class TestBehavior(unittest.TestCase):
         api.content.create(
             type=DEXTERITY_FTI_FOLDER,
             container=self.portal,
-            id='folder'
+            id='folder',
         )
         self.setUpContent()
 
@@ -99,7 +99,7 @@ class TestBehavior(unittest.TestCase):
 
     def test_content_information(self):
         content = self.content
-        self.assertEqual(content.skos, [self.token, ])
+        self.assertEqual(content.skos, [self.token])
 
 
 class TestViewlet(unittest.TestCase):
@@ -119,7 +119,7 @@ class TestViewlet(unittest.TestCase):
             container=portal,
             id='content',
         )
-        o.skos = [token, ]
+        o.skos = [token]
         self.content = o
 
     def setUp(self):
