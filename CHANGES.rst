@@ -4,7 +4,8 @@ Alterações
 2.0.3 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Adiciona dependência no `six <https://pypi.org/project/six/>`_ para futura compatibilidade com Python 3.
+  [hvelarde]
 
 
 2.0.2 (2017-12-22)

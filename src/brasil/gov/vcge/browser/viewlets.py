@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """Modulo que implementa o(s) viewlet(s) do VCGE."""
+from six.moves.urllib.parse import urlencode  # noqa: I001
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from plone.app.layout.viewlets import ViewletBase
 from Products.CMFPlone.utils import safe_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from urllib import urlencode
 from zope.component import queryUtility
 from zope.schema.interfaces import IVocabularyFactory
 
