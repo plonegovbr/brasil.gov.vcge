@@ -78,7 +78,8 @@ class TestUpgrade(BaseTestCase):
         step = [step for step in upgradeSteps
                 if (step[0]['dest'] == ('1000',)) and
                 (step[0]['source'] == ('0',))]
-        self.assertEqual(len(step), 1)
+        # XXX: https://github.com/PyCQA/pylint/issues/2130
+        self.assertEqual(len(step), 1)  # pylint: disable=comprehension-escape
 
     def test_to2000_available(self):
 
@@ -88,7 +89,8 @@ class TestUpgrade(BaseTestCase):
         step = [step for step in upgradeSteps
                 if (step[0]['dest'] == ('2000',)) and
                 (step[0]['source'] == ('1000',))]
-        self.assertEqual(len(step), 1)
+        # XXX: https://github.com/PyCQA/pylint/issues/2130
+        self.assertEqual(len(step), 1)  # pylint: disable=comprehension-escape
 
 
 class TestUninstall(BaseTestCase):
