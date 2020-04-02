@@ -36,7 +36,7 @@ class VCGEViewlet(ViewletBase):
             params = urlencode({'skos:list': uri})
             skos.append({'id': uri,
                          'title': title,
-                         'url': '{0}/@@search?{1}'.format(
+                         'url': '{0}/@@busca?{1}'.format(
                              self.nav_root_url,
                              params,
                          )})
